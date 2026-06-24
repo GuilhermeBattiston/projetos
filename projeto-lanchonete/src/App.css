@@ -1,3 +1,10 @@
+.produtos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+  
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;

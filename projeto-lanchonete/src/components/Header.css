@@ -1,0 +1,10 @@
+.titulo{
+    background-color: black;
+    border: 1px solid black;
+       
+}
+
+.titulo h1,h2{
+    color: white;
+}
+

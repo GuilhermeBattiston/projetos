@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    margin: 50px auto;
+    gap: 20px;
+    border: 1px solid black;
+}
+
+.container input{
+    width: 300px;
+    padding: 7px;
+}
+
+.container h2{
+    color: black;
+}
+
+.container button{
+    padding: 7px;
+}
