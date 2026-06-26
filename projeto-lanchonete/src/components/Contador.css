@@ -1,0 +1,11 @@
+.Contador{
+    color: black;
+    border: 1px solid black;
+    margin: auto;
+    border-radius: 5px;
+    width: 120px;
+    background-color: #d4d0d0;
+}
+.Contador p{
+    font-size: 20px;
+}

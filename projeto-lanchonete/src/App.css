@@ -189,3 +189,26 @@
     border-right-color: var(--border);
   }
 }
+
+.produto1{
+  border: 1px solid black;
+  width: 250px;
+  margin: 20px auto;
+}
+
+.produto2{
+  border: 1px solid black;
+  width: 250px;
+  margin: 20px auto;
+}
+
+
+.produto3{
+  border: 1px solid black;
+  width: 250px;
+  margin: 20px auto;
+}
+
+h2{
+  color: black;
+}
