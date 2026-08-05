@@ -1,0 +1,11 @@
+.Calculadora button{
+    width: 100px;   
+}
+
+.Calculadora {
+    border: 2px solid grey;
+    border-radius: 20px;
+    width: 750px;
+    margin: auto;
+    margin-top: 20px;
+}
