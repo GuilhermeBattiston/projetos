@@ -27,7 +27,7 @@ function Calculadora(){
     return(
 <>
         <div className="Calculadora">
-            <h1>Calculadora de Pedidos</h1>
+            <h1>Carrinho</h1>
 
             <h3>X-Burger - R$ 15,90</h3>
             <button onClick={() => setQtdXburger(qtdXburger + 1)}>+</button>

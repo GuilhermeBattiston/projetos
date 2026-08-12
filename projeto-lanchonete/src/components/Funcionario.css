@@ -1,11 +1,18 @@
 .funcionario {
+  padding: 18px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  color: var(--cor-texto);
+  text-align: left;
+  background: var(--cor-superficie);
+  box-shadow: 0 4px 12px rgba(0, 75, 45, 0.07);
+}
 
-        color: black;
-        border: 1px solid black;
-        border-radius: 2px;
-        width: 150px;
-        margin: auto;
-        box-shadow: 0 2px 8px rgb(0,0,0,0.20);
-        margin-top: 10px;
-    
+.funcionario p {
+  margin: 0;
+}
+
+.funcionario p + p {
+  margin-top: 6px;
+  color: var(--cor-texto-suave);
 }

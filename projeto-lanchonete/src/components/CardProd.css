@@ -1,13 +1,70 @@
+.tudo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 320px;
+  padding: 18px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 16px;
+  background: var(--cor-superficie);
+  box-shadow: 0 5px 16px rgba(0, 75, 45, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
-img {
-    width: 50%;  /* Define a nova largura maior */
-    height: auto;  /* Mantém a proporção correta para não distorcer */  
-  }
+.tudo:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra);
+}
 
- .tudo {
-  width: 220px;
-  border: 1px solid black;
-  padding: 16px;
+.produto img {
+  display: block;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 14px;
+  object-fit: contain;
+}
+
+.produto h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.preco p {
+  margin: 12px 0;
+  color: var(--cor-primaria-escura);
+  font-weight: 800;
+}
+
+.contador_produto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.contador_produto span {
+  min-width: 24px;
+  font-weight: 800;
   text-align: center;
-  box-shadow: 0 2px 8px rgb(0,0,0,0.20);
- }
+}
+
+.contador_produto button {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 800;
+  background: var(--cor-primaria);
+}
+
+.contador_produto button:hover:not(:disabled) {
+  background: var(--cor-primaria-escura);
+}
+
+.contador_produto button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
