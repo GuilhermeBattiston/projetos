@@ -11,6 +11,12 @@
   margin-bottom: 28px;
 }
 
+.comandas_acoes {
+  display: flex;
+  flex: none;
+  gap: 10px;
+}
+
 .comandas_cabecalho h1 {
   margin: 0;
   color: var(--cor-primaria-escura);

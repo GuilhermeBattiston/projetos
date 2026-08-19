@@ -1,7 +1,6 @@
 import './Comandas.css';
-import { Link } from 'react-router-dom';
 
-function Comandas({ comandas }) {
+function Comandas({ comandas, onPedidos, onSair }) {
     return (
         <main className="comandas_container">
             <div className="comandas_cabecalho">
@@ -9,9 +8,14 @@ function Comandas({ comandas }) {
                     <h1>Comandas do Coxa</h1>
                     <p>Pedidos enviados pela torcida alviverde.</p>
                 </div>
-                <Link className="btn_voltar" to="/">
-                    Voltar ao cardápio
-                </Link>
+                <div className="comandas_acoes">
+                    <button className="btn_voltar" type="button" onClick={onPedidos}>
+                        Pedidos
+                    </button>
+                    <button className="btn_voltar" type="button" onClick={onSair}>
+                        Sair
+                    </button>
+                </div>
             </div>
 
             {comandas.length === 0 ? (

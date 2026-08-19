@@ -5,12 +5,29 @@ import Login from "./components/Login";
 import CardProd from "./components/CardProd";
 import Funcionario from "./components/Funcionario";
 import Comandas from "./components/Comandas";
+import Pedidos from "./components/Pedidos";
 import './App.css';
 
 function App() {
     const [carrinho, setCarrinho] = useState({});
     const [comandas, setComandas] = useState([]);
+    const [tipoUsuario, setTipoUsuario] = useState(null);
     const navigate = useNavigate();
+
+    const fazerLogin = (usuario, senha) => {
+        if (senha !== '123' || !['cliente', 'admin'].includes(usuario)) {
+            return false;
+        }
+
+        setTipoUsuario(usuario);
+        navigate('/pedidos');
+        return true;
+    };
+
+    const sair = () => {
+        setTipoUsuario(null);
+        navigate('/');
+    };
 
     const lanches = [
         { id: 1, nome: "X-salada", preco: "17.50", imagem: "/images/x-salada.png" },
@@ -72,18 +89,19 @@ function App() {
 
         setComandas(prev => [
             ...prev,
-            { id: Date.now(), itens, total: valorTotal }
+            { id: Date.now(), itens, total: valorTotal, status: 'Em preparo' }
         ]);
         limparCarrinho();
-        navigate('/comandas');
+        navigate('/pedidos');
     }
 
     return (
         <Routes>
-            <Route path="/comandas" element={<Comandas comandas={comandas} />} />
-            <Route path="/" element={<>
+            <Route path="/" element={
+                tipoUsuario ? <Navigate to="/pedidos" replace /> : <Login onLogin={fazerLogin} />
+            } />
+            <Route path="/pedidos" element={tipoUsuario === 'cliente' ? <>
             <Header titulo="Lanchonete Coxa Branca" subtitulo="O sabor que joga junto com você" />
-            <Login />
 
             {/* Seção do Carrinho de Compras */}
             <div className="carrinho_container">
@@ -140,7 +158,8 @@ function App() {
                     />
                 ))}
             </div>
-            </>} />
+            </> : tipoUsuario === 'admin' ? <Pedidos comandas={comandas} onSair={sair} /> : <Navigate to="/" replace />} />
+            <Route path="/comandas" element={tipoUsuario === 'admin' ? <Comandas comandas={comandas} onPedidos={() => navigate('/pedidos')} onSair={sair} /> : <Navigate to="/" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );

@@ -12,7 +12,32 @@
 
 .login_container h2 {
   margin: 0 0 4px;
+  text-align: center;
   font-size: 1.35rem;
+}
+
+.login_simbolo {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.login_estrela {
+  color: #d4af37;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.login_escudo {
+  width: 86px;
+  height: auto;
+}
+
+.login_container label {
+  margin-bottom: -7px;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .login_container input {
@@ -43,8 +68,8 @@
   background: var(--cor-primaria-escura);
 }
 
-.login_container a {
-  color: var(--cor-primaria-escura);
+.login_erro {
+  margin: 0;
+  color: #b42318;
   font-size: 0.9rem;
-  text-align: center;
 }
