@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Pedidos.css';
 
-function Pedidos({ comandas, onSair }) {
+function Pedidos({ comandas, onHistorico, onSair }) {
     return (
         <main className="pedidos_container">
             <header className="pedidos_cabecalho">
@@ -11,6 +11,7 @@ function Pedidos({ comandas, onSair }) {
                 </div>
                 <div className="pedidos_acoes">
                     <Link className="btn_comandas" to="/comandas">Área das comandas</Link>
+                    <button className="btn_comandas" type="button" onClick={onHistorico}>Histórico</button>
                     <button className="btn_sair" type="button" onClick={onSair}>Sair</button>
                 </div>
             </header>

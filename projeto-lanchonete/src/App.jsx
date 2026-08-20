@@ -6,6 +6,7 @@ import CardProd from "./components/CardProd";
 import Funcionario from "./components/Funcionario";
 import Comandas from "./components/Comandas";
 import Pedidos from "./components/Pedidos";
+import HistoricoPedidos from "./components/HistoricoPedidos";
 import './App.css';
 
 function App() {
@@ -28,6 +29,12 @@ function App() {
         setTipoUsuario(null);
         setCarrinho({});
         navigate('/');
+    };
+
+    const alterarStatusComanda = (id, status) => {
+        setComandas(prev => prev.map(comanda => (
+            comanda.id === id ? { ...comanda, status } : comanda
+        )));
     };
 
     const lanches = [
@@ -163,8 +170,29 @@ function App() {
                     />
                 ))}
             </div>
-            </> : tipoUsuario === 'admin' ? <Pedidos comandas={comandas} onSair={sair} /> : <Navigate to="/" replace />} />
-            <Route path="/comandas" element={tipoUsuario === 'admin' ? <Comandas comandas={comandas} onPedidos={() => navigate('/pedidos')} onSair={sair} /> : <Navigate to="/" replace />} />
+            </> : tipoUsuario === 'admin' ? <Pedidos comandas={comandas} onHistorico={() => navigate('/historico')} onSair={sair} /> : <Navigate to="/" replace />} />
+            <Route
+                path="/comandas"
+                element={tipoUsuario === 'admin' ? (
+                    <Comandas
+                        comandas={comandas.filter(comanda => comanda.status !== 'Entregue')}
+                        onPedidos={() => navigate('/pedidos')}
+                        onHistorico={() => navigate('/historico')}
+                        onSair={sair}
+                        onAlterarStatus={alterarStatusComanda}
+                    />
+                ) : <Navigate to="/" replace />}
+            />
+            <Route
+                path="/historico"
+                element={tipoUsuario === 'admin' ? (
+                    <HistoricoPedidos
+                        comandas={comandas}
+                        onComandas={() => navigate('/comandas')}
+                        onSair={sair}
+                    />
+                ) : <Navigate to="/" replace />}
+            />
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );

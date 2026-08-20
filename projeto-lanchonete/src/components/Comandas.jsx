@@ -1,6 +1,6 @@
 import './Comandas.css';
 
-function Comandas({ comandas, onPedidos, onSair }) {
+function Comandas({ comandas, onPedidos, onHistorico, onSair, onAlterarStatus }) {
     return (
         <main className="comandas_container">
             <div className="comandas_cabecalho">
@@ -11,6 +11,9 @@ function Comandas({ comandas, onPedidos, onSair }) {
                 <div className="comandas_acoes">
                     <button className="btn_voltar" type="button" onClick={onPedidos}>
                         Pedidos
+                    </button>
+                    <button className="btn_voltar" type="button" onClick={onHistorico}>
+                        Histórico
                     </button>
                     <button className="btn_voltar" type="button" onClick={onSair}>
                         Sair
@@ -33,6 +36,17 @@ function Comandas({ comandas, onPedidos, onSair }) {
                                 ))}
                             </ul>
                             <strong>Total: R$ {comanda.total.toFixed(2).replace('.', ',')}</strong>
+                            <label className="status_comanda">
+                                Status
+                                <select
+                                    value={comanda.status}
+                                    onChange={(event) => onAlterarStatus(comanda.id, event.target.value)}
+                                >
+                                    <option value="Em preparo">Em preparo</option>
+                                    <option value="Pronto">Pronto</option>
+                                    <option value="Entregue">Entregue</option>
+                                </select>
+                            </label>
                         </section>
                     ))}
                 </div>

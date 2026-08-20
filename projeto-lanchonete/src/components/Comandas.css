@@ -64,6 +64,24 @@
   color: var(--cor-primaria-escura);
 }
 
+.status_comanda {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  color: var(--cor-texto-suave);
+  font-weight: 700;
+}
+
+.status_comanda select {
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: var(--cor-texto);
+  background: var(--cor-superficie);
+  font: inherit;
+}
+
 .btn_voltar {
   display: inline-block;
   flex: none;
