@@ -1,6 +1,6 @@
 import './Header.css'
 
-function Header({titulo, subtitulo}){
+function Header({titulo, subtitulo, onLogout}){
     return(
         <header className="titulo">
             <div>
@@ -10,6 +10,9 @@ function Header({titulo, subtitulo}){
                 </div>
                 <h1>{titulo}</h1>
                 <h2>{subtitulo}</h2>
+                <button className="btn_sair" type="button" onClick={onLogout}>
+                    Sair
+                </button>
             </div>
         </header>
     )

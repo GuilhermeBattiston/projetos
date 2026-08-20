@@ -70,6 +70,23 @@
   font-weight: 500;
 }
 
+.btn_sair {
+  margin-top: 20px;
+  padding: 8px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 4px;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.btn_sair:hover {
+  color: #004b2d;
+  background: #fff;
+}
+
 @media (max-width: 520px) {
   .escudo_coritiba {
     width: 74px;

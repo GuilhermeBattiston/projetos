@@ -26,6 +26,7 @@ function App() {
 
     const sair = () => {
         setTipoUsuario(null);
+        setCarrinho({});
         navigate('/');
     };
 
@@ -101,7 +102,11 @@ function App() {
                 tipoUsuario ? <Navigate to="/pedidos" replace /> : <Login onLogin={fazerLogin} />
             } />
             <Route path="/pedidos" element={tipoUsuario === 'cliente' ? <>
-            <Header titulo="Lanchonete Coxa Branca" subtitulo="O sabor que joga junto com você" />
+            <Header
+                titulo="Lanchonete Coxa Branca"
+                subtitulo="O sabor que joga junto com você"
+                onLogout={sair}
+            />
 
             {/* Seção do Carrinho de Compras */}
             <div className="carrinho_container">
