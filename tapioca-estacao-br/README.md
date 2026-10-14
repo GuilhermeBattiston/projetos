@@ -1,6 +1,6 @@
 # Tapioca Estação BR — protótipo comercial
 
-Site responsivo React + Vite, criado separadamente para preservar integralmente o aplicativo existente em `../projeto-lanchonete`.
+Site responsivo React + Vite da Tapioca Estação BR. O repositório contém apenas este projeto, com dependências e configuração próprias.
 
 ## Executar
 
