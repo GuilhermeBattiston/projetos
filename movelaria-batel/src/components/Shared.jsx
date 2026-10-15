@@ -1,13 +1,14 @@
 import { ArrowUpRight } from "lucide-react";
-import { whatsappUrl } from "../config.js";
+import { company, whatsappUrl } from "../config.js";
 export function Brand() {
   return (
-    <a href="#inicio" className="brand" aria-label="Movelaria Batel, início">
+    <a href="#inicio" className="brand" aria-label={`${company.name}, início`}>
       <span className="brand-emblem" aria-hidden="true">
         m<span>b</span>
       </span>
       <span className="brand-type">
-        movelaria <strong>batel</strong>
+        Movelaria <strong>Batel</strong>
+        <small>- Planejados Curitiba</small>
       </span>
     </a>
   );

@@ -1,5 +1,5 @@
 export const company = Object.freeze({
-  name: "Movelaria Batel — Planejados Curitiba",
+  name: "Movelaria Batel - Planejados Curitiba",
   phone: "5541996318510",
   phoneLabel: "(41) 99631-8510",
   address: "Avenida Sete de Setembro, 4682",

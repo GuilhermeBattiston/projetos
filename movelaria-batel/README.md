@@ -1,4 +1,4 @@
-# Movelaria Batel — Planejados Curitiba
+# Movelaria Batel - Planejados Curitiba
 
 Protótipo comercial inteiramente novo em React 19/Vite 7. O HTML anexado foi usado exclusivamente como fonte de informações comerciais; layout, CSS, scripts, nota, depoimento e alegações genéricas foram descartados.
 

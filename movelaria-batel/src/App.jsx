@@ -81,7 +81,7 @@ function Introduction() {
           olhar para a sua rotina.
         </p>
         <p>
-          A Movelaria Batel — Planejados Curitiba é uma loja de móveis
+          A Movelaria Batel - Planejados Curitiba é uma loja de móveis
           localizada no Batel, em Curitiba. Conheça referências de ambientes e
           entre em contato para conversar sobre o que você procura.
         </p>
