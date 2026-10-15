@@ -79,7 +79,7 @@ Fontes distribuídas pelos pacotes Fontsource, com licenças incluídas nesses p
 
 O workflow `.github/workflows/deploy-pages.yml` instala, verifica e compila o aplicativo e publica somente `tapioca-estacao-br/dist`. Ele executa em pushes para `main` e também permite execução manual em Actions.
 
-No GitHub, abra **Settings → Pages → Build and deployment → Source** e selecione **GitHub Actions**. Depois acompanhe **Actions → Publish Tapioca Estação BR to GitHub Pages**. Se a primeira execução falhar porque Pages ainda não estava configurado, execute novamente após selecionar a origem correta.
+No GitHub, abra **Settings → Pages → Build and deployment → Source** e selecione **GitHub Actions**. Depois acompanhe **Actions → Publish prototypes to GitHub Pages**. Se a primeira execução falhar porque Pages ainda não estava configurado, execute novamente após selecionar a origem correta.
 
 URL prevista: https://guilhermebattiston.github.io/projetos/
 

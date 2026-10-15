@@ -1,4 +1,4 @@
-name: Publish Tapioca Estação BR to GitHub Pages
+name: Publish prototypes to GitHub Pages
 
 on:
   push:
@@ -24,7 +24,9 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-          cache-dependency-path: tapioca-estacao-br/package-lock.json
+          cache-dependency-path: |
+            tapioca-estacao-br/package-lock.json
+            lima-climatizacao/package-lock.json
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
       - name: Lint
@@ -35,6 +37,29 @@ jobs:
         run: npm run build
         env:
           GITHUB_PAGES: 'true'
+      - name: Install Lima dependencies
+        working-directory: lima-climatizacao
+        run: npm ci --no-audit --no-fund
+      - name: Validate Lima prototype
+        working-directory: lima-climatizacao
+        run: |
+          npm run lint
+          npm test
+      - name: Build Lima for /projetos/lima-climatizacao/
+        working-directory: lima-climatizacao
+        run: npm run build
+        env:
+          GITHUB_PAGES: 'true'
+      - name: Assemble and verify both sites
+        working-directory: .
+        run: |
+          test -f tapioca-estacao-br/dist/index.html
+          test -f lima-climatizacao/dist/index.html
+          cp -R lima-climatizacao/dist tapioca-estacao-br/dist/lima-climatizacao
+          touch tapioca-estacao-br/dist/.nojekyll
+          grep -q 'Tapioca Estação BR' tapioca-estacao-br/dist/index.html
+          grep -q 'Lima Climatização' tapioca-estacao-br/dist/lima-climatizacao/index.html
+          grep -q '/projetos/lima-climatizacao/assets/' tapioca-estacao-br/dist/lima-climatizacao/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: tapioca-estacao-br/dist
