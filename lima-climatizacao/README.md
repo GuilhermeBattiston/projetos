@@ -67,17 +67,13 @@ Validação concluída: lint sem erros, quatro testes unitários aprovados, buil
 
 Quatro testes unitários verificam campos obrigatórios, espaços em branco, caracteres especiais, codificação, destino do WhatsApp e configuração. O teste de navegador cobre imagens, fontes, links e âncoras; pré-seleção de serviço; preservação dos valores; formulário inválido/válido; revisão; cópia/edição; FAQ; menu mobile; teclado; movimento reduzido; cinco larguras (320/390/768/1024/1440); ausência de armazenamento dos dados pessoais e erros no console. Capturas ficam em `/workspace/artifacts/lima-climatizacao/`.
 
-## GitHub Pages
+## Acesso pelo portal privado WebForge
 
-O workflow em `.github/workflows/deploy-pages.yml` prepara os dois protótipos. A Tapioca permanece na raiz de `/projetos/`; este site usa a base `/projetos/lima-climatizacao/`. O build Lima precisa ser copiado para `lima-climatizacao/` dentro do artefato conjunto antes do upload.
+A hospedagem pública em GitHub Pages foi substituída por um servidor Node.js com autenticação e autorização. O projeto permanece disponível para desenvolvimento local, mas a apresentação a clientes deve ser acessada somente pela rota protegida `/projetos/lima-climatizacao/` no domínio da VPS.
 
-Em Settings → Pages, a origem deve ser **GitHub Actions**. Aguarde build e deploy concluírem no workflow **Publish prototypes to GitHub Pages**. Endereço previsto depois do deploy: `https://guilhermebattiston.github.io/projetos/lima-climatizacao/`. Um push ou build local não comprova a publicação pública.
+O build do portal define `WEBFORGE_BASE` e copia os arquivos para `webforge/private/prototypes`. Não publique o `dist` deste projeto nem cópias dos assets em hospedagem pública. O workflow agora valida o WebForge sem publicar no Pages; a publicação antiga precisa ser desativada nas configurações do GitHub.
 
-```bash
-GITHUB_PAGES=true npm run build
-GITHUB_PAGES=true npm run preview -- --host 0.0.0.0 --port 4177 --strictPort
-LIMA_TEST_URL=http://127.0.0.1:4177/projetos/lima-climatizacao/ python tests/browser-smoke.py
-```
+Veja [as instruções do portal](../webforge/README.md) para execução, administração de acessos e Docker/HTTPS. Não existem senhas padrão.
 
 ## Antes da versão definitiva
 

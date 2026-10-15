@@ -75,20 +75,10 @@ Confirmar identidade e dados da empresa, substituir o cardápio e as fotografias
 
 Fontes distribuídas pelos pacotes Fontsource, com licenças incluídas nesses pacotes. Ícones Lucide, licença ISC. Imagens geradas para esta demonstração, sem atribuição à produção real da empresa.
 
-## Publicação no GitHub Pages
+## Acesso pelo portal privado WebForge
 
-O workflow `.github/workflows/deploy-pages.yml` instala, verifica e compila o aplicativo e publica somente `tapioca-estacao-br/dist`. Ele executa em pushes para `main` e também permite execução manual em Actions.
+A hospedagem pública em GitHub Pages foi substituída por um servidor Node.js com autenticação e autorização. O projeto permanece disponível para desenvolvimento local, mas a apresentação a clientes deve ser acessada somente pela rota protegida `/projetos/tapioca-estacao-br/` no domínio da VPS.
 
-No GitHub, abra **Settings → Pages → Build and deployment → Source** e selecione **GitHub Actions**. Depois acompanhe **Actions → Publish prototypes to GitHub Pages**. Se a primeira execução falhar porque Pages ainda não estava configurado, execute novamente após selecionar a origem correta.
+O build do portal define `WEBFORGE_BASE` e copia os arquivos para `webforge/private/prototypes`. Não publique o `dist` deste projeto nem cópias dos assets em hospedagem pública. O workflow agora valida o WebForge sem publicar no Pages; a publicação antiga precisa ser desativada nas configurações do GitHub.
 
-URL prevista: https://guilhermebattiston.github.io/projetos/
-
-O build de Pages usa `GITHUB_PAGES=true`, configurando a base `/projetos/`, inclusive para imagens e favicon. Builds normais continuam com a base `/`, apropriada para domínio próprio ou desenvolvimento local. Para validar Pages localmente:
-
-```bash
-GITHUB_PAGES=true npm run build
-GITHUB_PAGES=true npm run preview -- --host 0.0.0.0 --port 4174 --strictPort
-TAPIOCA_TEST_URL=http://127.0.0.1:4174/projetos/ python tests/browser-smoke.py
-```
-
-A raiz do código-fonte não é uma publicação estática pronta. Não use publicação direta da branch `main` ou da pasta `/docs`; utilize o workflow para publicar o build.
+Veja [as instruções do portal](../webforge/README.md) para execução, administração de acessos e Docker/HTTPS. Não existem senhas padrão.
