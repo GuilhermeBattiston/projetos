@@ -100,8 +100,8 @@ Pré-requisitos externos: VPS com Docker Engine/Compose, endereço DNS apontando
 ### Endereço gratuito com DuckDNS
 
 1. Entre em https://www.duckdns.org e crie um subdomínio disponível na sua conta.
-2. Configure o IPv4 `193.111.116.93` no painel DuckDNS. Se houver um registro IPv6, mantenha-o apenas se ele também alcançar esta VPS.
-3. Aguarde o DNS resolver para a VPS e use o endereço completo, como `seu-subdominio.duckdns.org`, em `WEBFORGE_DOMAIN` no `.env` da VPS. O exemplo não está reservado nem confirmado.
+2. Configure no painel DuckDNS o IPv4 público da VPS. Foi informado `138.36.33.99`; confirme que ele pertence à VPS, pois o painel pode detectar automaticamente o IP da conexão do navegador. Se houver um registro IPv6, mantenha-o apenas se ele também alcançar esta VPS.
+3. Aguarde o DNS resolver para a VPS e use `guilhermebattiston.duckdns.org` em `WEBFORGE_DOMAIN` no `.env` da VPS.
 4. Libere as portas TCP 80/443 para o Caddy emitir e renovar o certificado HTTPS gratuito. Verifique serviços existentes antes de ocupar essas portas.
 
 Para um IP fixo, basta atualizar o endereço no painel; o portal não precisa do token DuckDNS. Se o IP mudar, atualize o painel antes de acessar o portal. Não coloque o token no repositório, no frontend ou em mensagens.
@@ -116,7 +116,7 @@ Na raiz do checkout da VPS:
 
 ```bash
 cp .env.example .env
-# Edite .env: substitua seu-subdominio.duckdns.org pelo endereço DuckDNS criado.
+# Confira WEBFORGE_DOMAIN=guilhermebattiston.duckdns.org e o DNS antes de iniciar.
 docker compose config --quiet
 docker compose up -d --build
 docker compose ps
@@ -175,7 +175,7 @@ Instância única com SQLite persistente: não distribuído/multi-região; não 
 
 ## Endereço de produção
 
-Destino: `https://<subdominio-criado>.duckdns.org/projetos`. O endereço depende da criação na conta DuckDNS do proprietário; `.env.example` contém apenas um exemplo, sem segredos ou contas. O código não registra o subdomínio nem configura o DNS. O domínio anterior `joao315.devlook.xyz` foi substituído pela opção DuckDNS solicitada.
+Destino informado: **https://guilhermebattiston.duckdns.org/projetos**. O `.env.example` contém esse endereço, sem segredos ou contas. O proprietário informou o IP `138.36.33.99`; a associação com a VPS e a resolução DNS ainda precisam ser confirmadas. O código não registra o subdomínio nem configura o DNS. O domínio anterior `joao315.devlook.xyz` foi substituído pela opção DuckDNS solicitada.
 
 ## Resultados desta implementação
 
@@ -186,7 +186,7 @@ Destino: `https://<subdominio-criado>.duckdns.org/projetos`. O endereço depende
 - Navegador real: dois logins isolados, recursos privados, refresh, carrinho, orçamento, logout, recuperação de erro de conexão, teclado e cinco larguras: aprovado.
 - Imagem Docker: construída; Compose validado. Teste real com Caddy HTTPS e CA local confiável: aprovado, incluindo cookies Secure/HttpOnly, persistência após reinício, revogação e backup.
 - `npm audit --omit=dev`: nenhuma vulnerabilidade conhecida reportada nas dependências de produção.
-- Nenhuma conta de produção foi criada. O endereço DuckDNS aguarda cadastro e confirmação. A tentativa de SSH para `193.111.116.93:22` recebeu conexão recusada, antes da autenticação. Implantação externa e retirada do Pages continuam pendentes.
+- Nenhuma conta de produção foi criada. O endereço DuckDNS foi informado, mas sua resolução não pôde ser confirmada neste ambiente (falha temporária do resolvedor DNS). As tentativas de conexão à porta SSH 22 de `193.111.116.93` e `138.36.33.99` receberam conexão recusada, antes da autenticação. Implantação externa e retirada do Pages continuam pendentes.
 
 Para repetir o teste Docker após construir a imagem local:
 
