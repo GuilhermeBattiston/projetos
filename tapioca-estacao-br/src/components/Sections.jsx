@@ -52,7 +52,7 @@ export function Hero({ onOrder }) {
         <div className="hero-visual">
           <img
             className="hero-image"
-            src="/images/tapioca-frango.webp"
+            src={`${import.meta.env.BASE_URL}images/tapioca-frango.webp`}
             alt="Imagem gerada para demonstração: tapioca de frango e queijo em um prato verde"
             fetchPriority="high"
           />

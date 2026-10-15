@@ -74,3 +74,21 @@ O modal usa `dialog` nativo para foco e Escape, foco visível, rótulos de campo
 Confirmar identidade e dados da empresa, substituir o cardápio e as fotografias, configurar o número real e validar uma conversa com autorização da equipe. Definir condições de retirada/entrega, publicar em domínio próprio com HTTPS e revisar privacidade e operação comercial. Pedidos persistidos em servidor, sincronização, disponibilidade e pagamentos exigem uma etapa própria de backend; não estão incluídos neste protótipo.
 
 Fontes distribuídas pelos pacotes Fontsource, com licenças incluídas nesses pacotes. Ícones Lucide, licença ISC. Imagens geradas para esta demonstração, sem atribuição à produção real da empresa.
+
+## Publicação no GitHub Pages
+
+O workflow `.github/workflows/deploy-pages.yml` instala, verifica e compila o aplicativo e publica somente `tapioca-estacao-br/dist`. Ele executa em pushes para `main` e também permite execução manual em Actions.
+
+No GitHub, abra **Settings → Pages → Build and deployment → Source** e selecione **GitHub Actions**. Depois acompanhe **Actions → Publish Tapioca Estação BR to GitHub Pages**. Se a primeira execução falhar porque Pages ainda não estava configurado, execute novamente após selecionar a origem correta.
+
+URL prevista: https://guilhermebattiston.github.io/projetos/
+
+O build de Pages usa `GITHUB_PAGES=true`, configurando a base `/projetos/`, inclusive para imagens e favicon. Builds normais continuam com a base `/`, apropriada para domínio próprio ou desenvolvimento local. Para validar Pages localmente:
+
+```bash
+GITHUB_PAGES=true npm run build
+GITHUB_PAGES=true npm run preview -- --host 0.0.0.0 --port 4174 --strictPort
+TAPIOCA_TEST_URL=http://127.0.0.1:4174/projetos/ python tests/browser-smoke.py
+```
+
+A raiz do código-fonte não é uma publicação estática pronta. Não use publicação direta da branch `main` ou da pasta `/docs`; utilize o workflow para publicar o build.

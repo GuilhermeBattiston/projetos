@@ -1,3 +1,5 @@
+const baseUrl = import.meta.env?.BASE_URL ?? "/";
+
 // Fictional menu for commercial demonstration. Prices are integer BRL cents.
 export const categories = ["Todos", "Salgadas", "Doces", "Bebidas", "Combos"];
 export const products = [
@@ -7,7 +9,7 @@ export const products = [
     category: "Salgadas",
     price: 2290,
     description: "Frango desfiado, queijo derretido e um toque de tomate.",
-    image: "/images/tapioca-frango.webp",
+    image: `${baseUrl}images/tapioca-frango.webp`,
     tag: "Nossa escolha",
   },
   {
@@ -16,7 +18,7 @@ export const products = [
     category: "Salgadas",
     price: 2490,
     description: "Queijo, tomate fresco e manjericão. Simples, do jeito bom.",
-    image: "/images/tapioca-caprese.webp",
+    image: `${baseUrl}images/tapioca-caprese.webp`,
     tag: "Vegetariana",
   },
   {
@@ -25,7 +27,7 @@ export const products = [
     category: "Salgadas",
     price: 2890,
     description: "Carne de sol desfiada com o sabor do queijo coalho.",
-    image: "/images/tapioca-carne.webp",
+    image: `${baseUrl}images/tapioca-carne.webp`,
   },
   {
     id: "banana",
@@ -33,7 +35,7 @@ export const products = [
     category: "Doces",
     price: 1990,
     description: "Banana em rodelas, um fio de mel e canela para finalizar.",
-    image: "/images/tapioca-doce.webp",
+    image: `${baseUrl}images/tapioca-doce.webp`,
     tag: "Uma pausa doce",
   },
   {
@@ -66,7 +68,7 @@ export const products = [
     category: "Combos",
     price: 3090,
     description: "Tapioca de frango & queijo com suco de laranja de 300 ml.",
-    image: "/images/tapioca-frango.webp",
+    image: `${baseUrl}images/tapioca-frango.webp`,
     tag: "Tapioca + bebida",
   },
 ];
