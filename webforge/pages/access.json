@@ -18,5 +18,10 @@
     "username": "batel",
     "project": "movelaria-batel",
     "passwordHash": "622c5fb5324660a6dc1eb4fde92811f8ebf8c7abd22d987c064600453de07c92"
+  },
+  {
+    "username": "casttini",
+    "project": "casttini-curitiba",
+    "passwordHash": "effad172a81cc5ea9941cc30c657be73104de24ec17cd12a6e0e27db9612f1be"
   }
 ]
