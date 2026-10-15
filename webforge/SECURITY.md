@@ -1,3 +1,5 @@
+> **Modo atual: GitHub Pages com acesso visual.** Este documento descreve a alternativa de servidor/Docker, que não é usada no Pages. Os controles de autenticação descritos abaixo não protegem a publicação estática. Veja [a configuração atual](../README.md).
+
 # Controles e limites de segurança
 
 - Senhas Argon2id: 64 MiB, 3 passagens, salt aleatório; senhas reais fora do código/frontend.

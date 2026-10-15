@@ -1,0 +1,12 @@
+[
+  {
+    "username": "tapioca",
+    "project": "tapioca-estacao-br",
+    "passwordHash": "fc1564b17851aac44c7c753b3eebee44c250c0945cdfe6c20c413d0127c773da"
+  },
+  {
+    "username": "lima",
+    "project": "lima-climatizacao",
+    "passwordHash": "8fda0cf9bc3e311312a0ecfb0b62df13129683cbebeaf3a676253d84da9967dd"
+  }
+]

@@ -1,4 +1,4 @@
-name: Validate WebForge (no public deployment)
+name: Publish WebForge to GitHub Pages
 on:
   push:
     branches: [main]
@@ -9,11 +9,11 @@ concurrency:
   group: github-pages
   cancel-in-progress: true
 jobs:
-  validate:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
           cache: npm
@@ -24,16 +24,27 @@ jobs:
       - run: npm --prefix webforge ci --no-audit --no-fund
       - run: npm --prefix tapioca-estacao-br ci --no-audit --no-fund
       - run: npm --prefix lima-climatizacao ci --no-audit --no-fund
-      - name: Lint, test and build private portal
+      - name: Validate and build presentations
         run: |
           npm --prefix webforge run lint
-          npm --prefix webforge test
           npm --prefix tapioca-estacao-br run lint
           npm --prefix tapioca-estacao-br test
           npm --prefix lima-climatizacao run lint
           npm --prefix lima-climatizacao test
-          npm --prefix webforge run build
-      - name: Build server container
-        run: docker build -t webforge-validation .
-      - name: Verify production container over HTTPS
-        run: WEBFORGE_TEST_IMAGE=webforge-validation python webforge/tests/docker-smoke.py
+          npm --prefix webforge run build:pages
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages-dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,10 +1,22 @@
-# WebForge — portal privado de protótipos
+# WebForge — apresentação de protótipos
 
-A página `/projetos` é o acesso do cliente. Os protótipos Tapioca Estação BR e Lima Climatização continuam com seus projetos e recursos preservados, mas são compilados para armazenamento privado e servidos exclusivamente após autorização no servidor.
+Hospedagem atual: **GitHub Pages**, em https://guilhermebattiston.github.io/projetos/.
 
-**Hospedagem alvo: VPS com Docker + Caddy + HTTPS.** GitHub Pages não executa esta autenticação e não pode continuar servindo cópias públicas dos protótipos. O workflow passou a validar o código e a imagem Docker, sem publicar no Pages. Isso **não retira automaticamente a publicação antiga**: antes de considerar o ambiente privado, despublique o Pages e confira a visibilidade do repositório.
+A página inicial solicita usuário e senha e direciona para o protótipo correspondente. Os projetos Tapioca Estação BR e Lima Climatização permanecem preservados. A navegação possui sessão por aba de oito horas e botão Sair.
 
-- [Executar, administrar acessos e implantar na VPS](webforge/README.md)
-- [Arquitetura, controles e limitações](webforge/SECURITY.md)
+**Este modo é uma barreira visual de apresentação.** Os arquivos, as rotas e os verificadores de senha são públicos; o JavaScript pode ser contornado. Não use senhas pessoais, senhas reutilizadas ou informações confidenciais. Não há isolamento real de arquivos no GitHub Pages.
 
-Nenhuma conta, empresa ou senha de cliente é criada automaticamente. Os usuários e hashes residem somente no SQLite do servidor. O login público não inclui nomes de clientes, destinos cadastrados ou credenciais.
+## Publicação
+
+Em Settings → Pages, mantenha Source como **GitHub Actions**. Cada push na `main` executa `Publish WebForge to GitHub Pages`, que publica somente `pages-dist`. Não precisa de VPS, Docker, DuckDNS ou domínio próprio.
+
+```bash
+npm --prefix webforge ci
+npm --prefix tapioca-estacao-br ci
+npm --prefix lima-climatizacao ci
+npm --prefix webforge run build:pages
+```
+
+O build reaproveita o visual de `webforge/public` e usa `webforge/pages/login.js` no lugar do login de servidor. Os destinos e hashes estão em `webforge/pages/access.json`. O hash é SHA-256 de `usuario:senha` em UTF-8. Para alterar um acesso, substitua seu `passwordHash` pelo hash da nova combinação e publique novamente. A senha em texto não é necessária no código.
+
+As implementações Docker e backend foram preservadas como alternativa com autenticação real; não são executadas no Pages. Veja [documentação do servidor](webforge/README.md) e [controles do servidor](webforge/SECURITY.md).
