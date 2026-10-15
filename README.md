@@ -2,7 +2,7 @@
 
 Hospedagem atual: **GitHub Pages**, em https://guilhermebattiston.github.io/projetos/.
 
-A página inicial solicita usuário e senha e direciona para o protótipo correspondente. Os projetos Tapioca Estação BR, Lima Climatização e Lucas Construções permanecem preservados. A navegação possui sessão por aba de oito horas e botão Sair.
+A página inicial solicita usuário e senha e direciona para o protótipo correspondente. Os projetos Tapioca Estação BR, Lima Climatização, Lucas Construções e Movelaria Batel permanecem preservados. A navegação possui sessão por aba de oito horas e botão Sair.
 
 **Este modo é uma barreira visual de apresentação.** Os arquivos, as rotas e os verificadores de senha são públicos; o JavaScript pode ser contornado. Não use senhas pessoais, senhas reutilizadas ou informações confidenciais. Não há isolamento real de arquivos no GitHub Pages.
 
@@ -15,6 +15,7 @@ npm --prefix webforge ci
 npm --prefix tapioca-estacao-br ci
 npm --prefix lima-climatizacao ci
 npm --prefix lucas-construcoes ci
+npm --prefix movelaria-batel ci
 npm --prefix webforge run build:pages
 ```
 

@@ -13,5 +13,10 @@
     "username": "lucas",
     "project": "lucas-construcoes",
     "passwordHash": "44c026bf002b1c886f97a42b2089ee9180831bb700b3a8672225f9a305d08b43"
+  },
+  {
+    "username": "batel",
+    "project": "movelaria-batel",
+    "passwordHash": "622c5fb5324660a6dc1eb4fde92811f8ebf8c7abd22d987c064600453de07c92"
   }
 ]
