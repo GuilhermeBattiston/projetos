@@ -95,7 +95,16 @@ O portal não expõe um catálogo público de empresas nem exige modificação d
 
 ## Implantação em VPS com Docker
 
-Pré-requisitos externos: VPS com Docker Engine/Compose, domínio real com DNS apontando para a VPS e portas 80/443 disponíveis. Não foi fornecido acesso à VPS nesta sessão; os arquivos de implantação são preparados para execução pelo administrador.
+Pré-requisitos externos: VPS com Docker Engine/Compose, endereço DNS apontando para a VPS e portas 80/443 disponíveis. Um subdomínio gratuito DuckDNS atende ao requisito; não é necessário comprar um domínio.
+
+### Endereço gratuito com DuckDNS
+
+1. Entre em https://www.duckdns.org e crie um subdomínio disponível na sua conta.
+2. Configure o IPv4 `193.111.116.93` no painel DuckDNS. Se houver um registro IPv6, mantenha-o apenas se ele também alcançar esta VPS.
+3. Aguarde o DNS resolver para a VPS e use o endereço completo, como `seu-subdominio.duckdns.org`, em `WEBFORGE_DOMAIN` no `.env` da VPS. O exemplo não está reservado nem confirmado.
+4. Libere as portas TCP 80/443 para o Caddy emitir e renovar o certificado HTTPS gratuito. Verifique serviços existentes antes de ocupar essas portas.
+
+Para um IP fixo, basta atualizar o endereço no painel; o portal não precisa do token DuckDNS. Se o IP mudar, atualize o painel antes de acessar o portal. Não coloque o token no repositório, no frontend ou em mensagens.
 
 Antes de migrar:
 
@@ -107,7 +116,7 @@ Na raiz do checkout da VPS:
 
 ```bash
 cp .env.example .env
-# WEBFORGE_DOMAIN já usa o domínio informado: joao315.devlook.xyz. Confirme o DNS da VPS.
+# Edite .env: substitua seu-subdominio.duckdns.org pelo endereço DuckDNS criado.
 docker compose config --quiet
 docker compose up -d --build
 docker compose ps
@@ -164,9 +173,9 @@ Os testes HTTP verificam senhas corretas/incorretas, usuário inexistente/desati
 
 Instância única com SQLite persistente: não distribuído/multi-região; não execute várias réplicas independentes com bancos distintos. Não há recuperação automática de senha, MFA, painel administrativo, auditoria completa de acessos ou envio de e-mail. O operador da VPS/registro de imagens e pessoas com acesso ao repositório/volume continuam podendo ler os arquivos. O cliente autorizado pode salvar o conteúdo recebido; autenticação não é DRM.
 
-## Domínio escolhido
+## Endereço de produção
 
-Produção: **https://joao315.devlook.xyz/projetos**. O `.env.example` contém apenas esse domínio, sem segredos ou contas. Aponte o DNS para a VPS e forneça acesso SSH autorizado ou execute os passos Docker acima nela. O código não configura o DNS nem cria uma VPS.
+Destino: `https://<subdominio-criado>.duckdns.org/projetos`. O endereço depende da criação na conta DuckDNS do proprietário; `.env.example` contém apenas um exemplo, sem segredos ou contas. O código não registra o subdomínio nem configura o DNS. O domínio anterior `joao315.devlook.xyz` foi substituído pela opção DuckDNS solicitada.
 
 ## Resultados desta implementação
 
@@ -177,7 +186,7 @@ Produção: **https://joao315.devlook.xyz/projetos**. O `.env.example` contém a
 - Navegador real: dois logins isolados, recursos privados, refresh, carrinho, orçamento, logout, recuperação de erro de conexão, teclado e cinco larguras: aprovado.
 - Imagem Docker: construída; Compose validado. Teste real com Caddy HTTPS e CA local confiável: aprovado, incluindo cookies Secure/HttpOnly, persistência após reinício, revogação e backup.
 - `npm audit --omit=dev`: nenhuma vulnerabilidade conhecida reportada nas dependências de produção.
-- Nenhuma conta de produção foi criada. O domínio informado não teve DNS confirmado neste ambiente e não há acesso SSH à VPS configurado. Implantação externa e retirada do Pages continuam pendentes.
+- Nenhuma conta de produção foi criada. O endereço DuckDNS aguarda cadastro e confirmação. A tentativa de SSH para `193.111.116.93:22` recebeu conexão recusada, antes da autenticação. Implantação externa e retirada do Pages continuam pendentes.
 
 Para repetir o teste Docker após construir a imagem local:
 
