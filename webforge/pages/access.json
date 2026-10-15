@@ -8,5 +8,10 @@
     "username": "lima",
     "project": "lima-climatizacao",
     "passwordHash": "731d58ddfd8a05748d24b8a88db39c9a8800665b45d12631e947c14871cdb8ca"
+  },
+  {
+    "username": "lucas",
+    "project": "lucas-construcoes",
+    "passwordHash": "44c026bf002b1c886f97a42b2089ee9180831bb700b3a8672225f9a305d08b43"
   }
 ]

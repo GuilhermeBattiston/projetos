@@ -22,7 +22,7 @@ with tempfile.TemporaryDirectory() as directory:
     base = f'http://127.0.0.1:{server.server_port}/projetos/'
     password = secrets.token_urlsafe(18)
     registry = json.loads((repo / 'webforge/pages/access.json').read_text())
-    assert len(registry) == 2 and all(len(a['passwordHash']) == 64 for a in registry)
+    assert len(registry) == 3 and all(len(a['passwordHash']) == 64 for a in registry)
     accounts = [{**a, 'passwordHash': hashlib.sha256(f"{a['username']}:{password}".encode()).hexdigest()} for a in registry]
     try:
         with sync_playwright() as p:
@@ -60,7 +60,7 @@ with tempfile.TemporaryDirectory() as directory:
             expect(page.get_by_role('button', name='Acessar projeto')).to_be_visible()
             assert not errors, errors
             browser.close()
-        print('PASS: invalid login, both destinations, refresh, cross-project redirect, logout, direct navigation and mobile; no JavaScript errors.')
+        print('PASS: invalid login, all three destinations, refresh, cross-project redirect, logout, direct navigation and mobile; no JavaScript errors.')
     finally:
         server.shutdown()
         server.server_close()
