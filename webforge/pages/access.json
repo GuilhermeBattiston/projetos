@@ -23,5 +23,10 @@
     "username": "casttini",
     "project": "casttini-curitiba",
     "passwordHash": "effad172a81cc5ea9941cc30c657be73104de24ec17cd12a6e0e27db9612f1be"
+  },
+  {
+    "username": "planejados",
+    "project": "planejados-curitiba",
+    "passwordHash": "cc17efc266028eee586661bee25908e0fb3a9c26e5c009f12a49ac5f2a86e78d"
   }
 ]

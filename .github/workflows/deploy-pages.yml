@@ -24,12 +24,14 @@ jobs:
             lucas-construcoes/package-lock.json
             movelaria-batel/package-lock.json
             casttini-curitiba/package-lock.json
+            planejados-curitiba/package-lock.json
       - run: npm --prefix webforge ci --no-audit --no-fund
       - run: npm --prefix tapioca-estacao-br ci --no-audit --no-fund
       - run: npm --prefix lima-climatizacao ci --no-audit --no-fund
       - run: npm --prefix lucas-construcoes ci --no-audit --no-fund
       - run: npm --prefix movelaria-batel ci --no-audit --no-fund
       - run: npm --prefix casttini-curitiba ci --no-audit --no-fund
+      - run: npm --prefix planejados-curitiba ci --no-audit --no-fund
       - name: Validate and build presentations
         run: |
           npm --prefix webforge run lint
@@ -43,6 +45,8 @@ jobs:
           npm --prefix movelaria-batel test
           npm --prefix casttini-curitiba run lint
           npm --prefix casttini-curitiba test
+          npm --prefix planejados-curitiba run lint
+          npm --prefix planejados-curitiba test
           npm --prefix webforge run build:pages
       - uses: actions/upload-pages-artifact@v3
         with:

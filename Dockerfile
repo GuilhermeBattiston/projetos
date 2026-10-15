@@ -5,6 +5,7 @@ COPY lima-climatizacao/package*.json ./lima-climatizacao/
 COPY lucas-construcoes/package*.json ./lucas-construcoes/
 COPY movelaria-batel/package*.json ./movelaria-batel/
 COPY casttini-curitiba/package*.json ./casttini-curitiba/
+COPY planejados-curitiba/package*.json ./planejados-curitiba/
 COPY webforge/package*.json ./webforge/
 RUN --mount=type=secret,id=ca_bundle \
     if [ -f /run/secrets/ca_bundle ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/ca_bundle; fi; \
@@ -13,12 +14,14 @@ RUN --mount=type=secret,id=ca_bundle \
  && npm --prefix lucas-construcoes ci --no-audit --no-fund \
  && npm --prefix movelaria-batel ci --no-audit --no-fund \
  && npm --prefix casttini-curitiba ci --no-audit --no-fund \
+ && npm --prefix planejados-curitiba ci --no-audit --no-fund \
  && npm --prefix webforge ci --no-audit --no-fund
 COPY tapioca-estacao-br/ ./tapioca-estacao-br/
 COPY lima-climatizacao/ ./lima-climatizacao/
 COPY lucas-construcoes/ ./lucas-construcoes/
 COPY movelaria-batel/ ./movelaria-batel/
 COPY casttini-curitiba/ ./casttini-curitiba/
+COPY planejados-curitiba/ ./planejados-curitiba/
 COPY webforge/ ./webforge/
 RUN npm --prefix webforge run build
 
