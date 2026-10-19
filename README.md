@@ -24,3 +24,7 @@ npm --prefix webforge run build:pages
 O build reaproveita o visual de `webforge/public` e usa `webforge/pages/login.js` no lugar do login de servidor. Os destinos e hashes estão em `webforge/pages/access.json`. O hash é SHA-256 de `usuario:senha` em UTF-8. Para alterar um acesso, substitua seu `passwordHash` pelo hash da nova combinação e publique novamente. A senha em texto não é necessária no código.
 
 As implementações Docker e backend foram preservadas como alternativa com autenticação real; não são executadas no Pages. Veja [documentação do servidor](webforge/README.md) e [controles do servidor](webforge/SECURITY.md).
+
+## Unitudo Planejados
+
+Protótipo React/TypeScript com galeria e briefing para WhatsApp em `unitudo-planejados/`. Consulte [instruções, conteúdo demonstrativo e testes](unitudo-planejados/README.md). Integrado ao build padrão e ao login existente após autorização de publicação. Valide com `npm --prefix webforge run build:pages` e `python webforge/tests/pages-smoke.py`.

@@ -3,6 +3,7 @@ import functools
 import hashlib
 import http.server
 import json
+import os
 from pathlib import Path
 import secrets
 import tempfile
@@ -23,10 +24,19 @@ with tempfile.TemporaryDirectory() as directory:
     password = secrets.token_urlsafe(18)
     registry = json.loads((repo / 'webforge/pages/access.json').read_text())
     builds = json.loads((repo / 'webforge/prototypes.json').read_text())
-    assert len(registry) == len(builds) and len(registry) > 1
-    assert {a['project'] for a in registry} == {entry['slug'] for entry in builds}
+    active_builds = [entry for entry in builds if not entry.get('draft')]
+    assert len(registry) == len(active_builds) and len(registry) > 1
+    assert {a['project'] for a in registry} == {entry['slug'] for entry in active_builds}
     assert all(len(a['passwordHash']) == 64 for a in registry)
     accounts = [{**a, 'passwordHash': hashlib.sha256(f"{a['username']}:{password}".encode()).hexdigest()} for a in registry]
+    if os.environ.get('WEBFORGE_INCLUDE_DRAFTS') == 'true':
+        for entry in builds:
+            if entry.get('draft'):
+                assert (repo / 'pages-dist' / entry['slug'] / 'index.html').exists()
+                username = 'disposable-' + entry['slug']
+                accounts.append({'username': username, 'project': entry['slug'], 'passwordHash': hashlib.sha256(f'{username}:{password}'.encode()).hexdigest()})
+    else:
+        assert all(not (repo / 'pages-dist' / entry['slug']).exists() for entry in builds if entry.get('draft'))
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch(executable_path='/usr/bin/chromium', headless=True, args=['--no-sandbox'])

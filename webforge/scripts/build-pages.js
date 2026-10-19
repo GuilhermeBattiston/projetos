@@ -2,6 +2,7 @@ import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { selectBuilds } from './registry.js';
 const repo = fileURLToPath(new URL('../../', import.meta.url));
 const out = path.join(repo, 'pages-dist');
 const registry = JSON.parse(await readFile(new URL('../prototypes.json', import.meta.url)));
@@ -13,7 +14,7 @@ let login = await readFile(new URL('../public/index.html', import.meta.url), 'ut
 login = login.replace('href="/projetos"', 'href="/projetos/"').replaceAll('Ambiente privado de apresentação', 'Ambiente de apresentação').replace('ACESSO PRIVADO', 'ACESSO AO PROJETO');
 await writeFile(path.join(out, 'index.html'), login);
 await writeFile(path.join(out, '.nojekyll'), '');
-for (const { slug, source } of registry) {
+for (const { slug, source } of selectBuilds(registry, process.env.WEBFORGE_INCLUDE_DRAFTS === 'true')) {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(source)) throw new Error('Registro inválido');
   const result = spawnSync('npm', ['run', 'build'], {
     cwd: path.join(repo, source), stdio: 'inherit',

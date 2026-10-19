@@ -3,10 +3,11 @@ import { cp, mkdir, rm, readFile, realpath } from "node:fs/promises";
 import path from "node:path";
 import { root, prototypeRegistry } from "../server/config.js";
 import { validSlug } from "../server/security.js";
+import { selectBuilds } from "./registry.js";
 const repo = await realpath(path.join(root, ".."));
 const destination = path.join(root, "private/prototypes");
 await mkdir(destination, { recursive: true });
-for (const entry of prototypeRegistry) {
+for (const entry of selectBuilds(prototypeRegistry, process.env.WEBFORGE_INCLUDE_DRAFTS === "true")) {
   if (!validSlug(entry.slug) || !validSlug(entry.source))
     throw new Error("Registro de protótipo inválido.");
   const source = await realpath(path.join(repo, entry.source));
