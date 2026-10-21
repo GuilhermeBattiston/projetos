@@ -33,5 +33,10 @@
     "username": "unitudo",
     "project": "unitudo-planejados",
     "passwordHash": "87d7c260c2bdc43b1310d0d53538d7a0240478aa18317b0fd75a531ec11880e3"
+  },
+  {
+    "username": "movelaria",
+    "project": "movelaria-curitiba",
+    "passwordHash": "11633c19b388d751f6f5a322e1af3bba129b36fe89c3d18ccc9223cdad0a808c"
   }
 ]

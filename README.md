@@ -28,3 +28,7 @@ As implementações Docker e backend foram preservadas como alternativa com aute
 ## Unitudo Planejados
 
 Protótipo React/TypeScript com galeria e briefing para WhatsApp em `unitudo-planejados/`. Consulte [instruções, conteúdo demonstrativo e testes](unitudo-planejados/README.md). Integrado ao build padrão e ao login existente após autorização de publicação. Valide com `npm --prefix webforge run build:pages` e `python webforge/tests/pages-smoke.py`.
+
+## Movelaria Curitiba
+
+Nova proposta editorial com portfólio filtrável e briefing de seis etapas em [movelaria-curitiba](movelaria-curitiba/README.md). Auditoria e comparativo documentam os limites de acesso ao site oficial. Integrada ao build padrão e ao login existente após autorização de publicação.
