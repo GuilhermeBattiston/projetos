@@ -1,0 +1,21 @@
+const paths:Record<string,string>={
+ basica:'M3 5h18v14H3zM3 10h18M3 14h18M9 5v5m6 0v4m-6 0v5',
+ cimentos:'M7 3h10l3 17H4L7 3Zm0 4h10M6 16h12m-8-4h4',
+ tintas:'M3 5h13v5H3zM16 7h4v5h-8v3m-2 0h4v6h-4z',
+ pisos:'M3 3h18v18H3zM3 12h18M12 3v18',
+ hidraulica:'M4 3h6v9h11v6H7a3 3 0 0 1-3-3V3Zm0 4h6m7 5v6',
+ eletrica:'m13 2-8 12h6l-1 8 9-12h-6z',
+ ferramentas:'M14 5a5 5 0 0 0-6 6l-5 5 4 4 5-5a5 5 0 0 0 6-6l-3 3-3-3z',
+ ferragens:'m8 3 8 0 5 9-5 9H8l-5-9zM9 9h6v6H9z',
+ acabamentos:'m3 15 12-12 6 6L9 21H3zM8 10l6 6',
+ reservatorios:'M5 7c0-4 14-4 14 0v11c0 4-14 4-14 0zM5 7c0 4 14 4 14 0',
+ search:'M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm5 12 6 6',
+ list:'M6 5H3v16h18V5h-3M8 3h8v5H8zm0 10h8m-8 4h8',
+ calc:'M5 3h14v18H5zM8 7h8M8 11h1m6 0h1m-8 4h1m6 0h1m-8 3h1m6 0h1',
+ arrow:'M4 12h15m-6-6 6 6-6 6',
+ pin:'M12 22s7-7 7-13a7 7 0 0 0-14 0c0 6 7 13 7 13Zm0-16a3 3 0 1 0 0 6 3 3 0 0 0 0-6',
+ plus:'M12 5v14M5 12h14',
+ chat:'M21 11a9 9 0 0 1-9 9H3l2-5a9 9 0 1 1 16-4ZM8 11h8',
+ menu:'M4 6h16M4 12h16M4 18h16',
+};
+export function Icon({name,size=24}:{name:string;size?:number}){return <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round"><path d={paths[name]??paths.basica}/></svg>}

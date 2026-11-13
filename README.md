@@ -32,3 +32,7 @@ Protótipo React/TypeScript com galeria e briefing para WhatsApp em `unitudo-pla
 ## Movelaria Curitiba
 
 Nova proposta editorial com portfólio filtrável e briefing de seis etapas em [movelaria-curitiba](movelaria-curitiba/README.md). Auditoria e comparativo documentam os limites de acesso ao site oficial. Integrada ao build padrão e ao login existente após autorização de publicação.
+
+## Armazém Dois Irmãos
+
+Catálogo, oito calculadoras e orçamento em [armazem-dois-irmaos](armazem-dois-irmaos/README.md). O acesso de demonstração usa o portal existente.

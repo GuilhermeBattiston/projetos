@@ -38,5 +38,10 @@
     "username": "movelaria",
     "project": "movelaria-curitiba",
     "passwordHash": "11633c19b388d751f6f5a322e1af3bba129b36fe89c3d18ccc9223cdad0a808c"
+  },
+  {
+    "username": "armazem",
+    "project": "armazem-dois-irmaos",
+    "passwordHash": "8001c53844833b883b372038e4bf921f54aef5372810b04371f91077a6fc108e"
   }
 ]
