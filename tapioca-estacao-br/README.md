@@ -1,84 +1,94 @@
-# Tapioca Estação BR — protótipo comercial
+# Estação da Tapioca
 
-Site responsivo React + Vite da Tapioca Estação BR. O repositório contém apenas este projeto, com dependências e configuração próprias.
+Atualização do aplicativo existente em React 19 + Vite. Nome oficial, logotipo original e cardápio fornecido foram integrados; o slug técnico `tapioca-estacao-br` foi preservado.
 
-## Executar
+## Executar e conferir
 
-Requer Node >=22.12 (ambiente validado com Node 24) e npm.
+Requer Node 22.12 ou superior. Dentro desta pasta:
 
-```bash
-cd /workspace/projetos/tapioca-estacao-br
-npm ci --cache /workspace/.npm-cache --no-audit --no-fund
-npm run dev -- --host 0.0.0.0 --port 5174 --strictPort
+```sh
+npm ci
+npm run dev -- --host 127.0.0.1 --port 5175 --strictPort
 ```
 
-```bash
+Abra `http://127.0.0.1:5175/`. Verificações:
+
+```sh
 npm run lint
+npm run typecheck
 npm test
 npm run build
-npm run preview -- --host 0.0.0.0 --port 4174 --strictPort
 ```
 
-O build fica em `dist/` e pode ser hospedado como site estático. Não há backend nem pagamento online.
+TypeScript verifica o JavaScript/JSX com `checkJs`. O build estático fica em `dist/`.
 
-## Direção visual
+## Marca
 
-Proposta autoral demonstrativa: fundo creme, verde profundo, terracota, títulos em Playfair Display e corpo em DM Sans. A fotografia da tapioca conduz o hero, com assinatura tipográfica, composição assimétrica e cardápio editorial. No mobile, o carrinho ocupa a tela e há um acesso fixo ao pedido quando existem itens. Fontes e imagens são locais; não há dependência de URLs de imagens de terceiros ou do Instagram.
+Original sem redesenho: `public/brand/logo-original.jpeg`. Cardápio impresso: `public/brand/cardapio-original.jpeg`. Um teste confere o SHA-256 do logotipo original. Versões otimizadas preservam proporções, cores e fundo preto.
 
-## Informações e transparência
+Aplicações: cabeçalho desktop/mobile, seção institucional, rodapé, carrinho/finalização, favicon e Open Graph. Paleta preta `#090909`, grafite, branca e amarela `#FFB515`; categorias identificadas por texto e pelas cinco cores do cardápio. Interface em DM Sans e títulos condensados; tipografia dentro do logo preservada.
 
-- O nome e o perfil `https://www.instagram.com/tapiocaestacaobr/` foram fornecidos pelo solicitante. O perfil não pôde ser consultado neste ambiente; sua identidade visual e seus dados comerciais não foram verificados.
-- Todos os produtos, descrições e preços são fictícios e estão identificados como demonstrativos no site.
-- Quatro imagens de tapiocas foram geradas para a apresentação. Elas não representam fotografias de produtos reais da empresa. Produtos sem fotografia possuem um estado ilustrado de ausência de imagem.
-- Assinatura visual, cores e texto institucional são propostas, sujeitos à aprovação. Não foram adicionados endereço, horários, avaliações, história, promoções ou telefone fictícios.
-- As modalidades retirada e entrega são opções de demonstração, sem afirmação de disponibilidade comercial ou cálculo de frete. Nada é cobrado e nenhum pedido é confirmado.
+## Produtos e fotografia
 
-## Onde configurar
+Fonte única: `src/data/products.js`. Preços em centavos inteiros, IDs exclusivos e disponibilidade configurável.
 
-| Conteúdo | Arquivo |
-|---|---|
-| Nome, Instagram e telefone WhatsApp | `src/config.js` |
-| Produtos, preços, categorias, descrições e imagens | `src/data/products.js` |
-| Texto e seções institucionais | `src/components/Sections.jsx` |
-| Cores, fontes, espaçamentos e responsividade | `src/styles.css` |
-| Mensagem e URL WhatsApp | `src/utils/order.js` |
-| Metadados SEO | `index.html` |
+| Categoria | Produtos | Uma unidade de cada |
+|---|---:|---:|
+| Tapiocas tradicionais | 4 | R$ 30,00 |
+| Tapiocas especiais | 12 | R$ 141,00 |
+| Tapiocas doces | 3 | R$ 27,00 |
+| Sanduíches | 2 | R$ 15,00 |
+| Bebidas | 6 | R$ 24,00 |
+| Total | 27 | **R$ 237,00** |
 
-No campo `business.whatsapp`, use **somente o telefone real confirmado**, com código do país e DDD, sem sinal de `+`, espaços ou pontuação. O valor vazio ou malformado mantém o envio bloqueado. Ao revisar um pedido com telefone válido, o site oferece um link `https://wa.me/...` com mensagem codificada. Abrir esse link não confirma o pedido; o cliente precisa enviá-lo e combinar atendimento com a equipe.
+O briefing cita R$ 231,00 para uma unidade de cada item, mas os preços individuais fornecidos somam **R$ 237,00**. Foram preservados os preços individuais. O exemplo de pedido do briefing soma corretamente **R$ 63,00**.
 
-A flag `business.demo` é apenas uma identificação de configuração; não remove automaticamente os avisos do protótipo. Remova ou ajuste esses avisos somente depois de confirmar o cardápio, a identidade e os dados comerciais com a empresa.
+Há 27 imagens individuais geradas, identificadas como ilustrativas: 19 tapiocas, dois mistos e seis bebidas. Cada uma tem variantes WebP de 640 e 360 pixels em `public/images/menu/`. Os 54 arquivos somam aproximadamente 1,77 MB. Imagens possuem carregamento sob demanda fora da primeira dobra, dimensões, texto alternativo, seleção responsiva e fallback. Os prompts e caminhos dos originais estão em `IMAGENS-2026.json` e `IMAGENS-BEBIDAS.json`; originais gerados permanecem no diretório do Codex.
 
-## Funcionalidades
+**Pendência:** Coca-Cola e Jatobá usam recipientes genéricos sem rótulo, com aviso visível. Não são fotos oficiais nem reproduções das embalagens comercializadas. Substituir pelas fotografias oficiais autorizadas e confirmar a embalagem/sabor do Jatobá. Não foram fabricados rótulos comerciais. As demais imagens também são ilustrativas, não fotos reais do estabelecimento.
 
-Menu mobile, âncoras, filtros, imagens com fallback, feedback ao adicionar, carrinho com limite de 99 unidades por produto, quantidades, remoção, subtotal em centavos, persistência dos itens em localStorage, formulário com campos obrigatórios, retirada/entrega, endereço condicionado à entrega, observações, revisão e cópia da mensagem. Dados pessoais do formulário ficam apenas na memória; somente itens e quantidades são persistidos. Há tratamento para indisponibilidade do armazenamento e da área de transferência.
+## Fluxo do pedido
 
-O modal usa `dialog` nativo para foco e Escape, foco visível, rótulos de campos e botões, aviso de quantidade para leitores de tela, link para pular ao cardápio e respeito a `prefers-reduced-motion`.
+Quantidade, ingredientes, observações individuais e opção sem tempero para as 19 tapiocas. Sem adicionais pagos ou substituições automáticas. Mistos e bebidas recebem apenas quantidade e observações.
 
-## Validação
+Carrinho, checkout, revisão e mensagem seguem a ordem das cinco categorias. Cada grupo mostra quantidade de unidades e subtotal; linhas mostram preço unitário, quantidade, subtotal e personalizações. Personalizações diferentes permanecem em linhas separadas. Grupos vazios são omitidos. Há alteração de quantidade, remoção e limpeza com confirmação.
 
-- `npm run lint`: sem erros no novo projeto.
-- `npm test`: quatro testes de cálculos, normalização do carrinho, mensagens e URL WhatsApp; nenhum envio externo é feito.
-- `npm run build`: build de produção concluído.
-- `python tests/browser-smoke.py`: smoke test com Playwright e Chromium do ambiente. Executar com servidor ativo em 5174; para outra URL, definir `TAPIOCA_TEST_URL`.
-- Smoke test: filtros; adicionar/aumentar/diminuir/remover; total; estado vazio; persistência; nome e endereço obrigatórios; retirada e entrega; revisão; bloqueio sem telefone; menu mobile; foco no modal; Escape; movimento reduzido; imagens; console; ausência de overflow em 320, 390, 768, 1024 e 1440 pixels.
-- O smoke test também passou no build servido por `npm run preview` na porta 4174. A cópia da mensagem foi verificada no navegador, comparando o conteúdo da área de transferência à revisão do pedido.
-- O navegador não envia mensagens reais pelo WhatsApp nem consulta disponibilidade comercial. A URL configurada é verificada em teste unitário com um valor de teste, sem contato externo.
-- Capturas de desktop, mobile e carrinho são salvas em `/workspace/artifacts/tapioca/` pelo smoke test.
+Delivery exige nome, rua, número e bairro. Complemento/referência são opcionais; retirada é demonstrativa. Total somente dos produtos, com aviso: **Taxa de entrega a confirmar pelo atendimento.**
 
-## Estrutura
+O cliente revisa, copia a mensagem e decide abrir o WhatsApp. A URL usa `encodeURIComponent`, preserva acentos e quebras de linha. Abrir o link não confirma recebimento nem apaga o carrinho. Nenhuma mensagem é enviada automaticamente.
 
-`components/`: cabeçalho, seções, cartões e modal. `hooks/`: estado/persistência. `data/`: cardápio. `utils/`: cálculos e mensagem. `tests/`: regras do pedido e teste de navegador. `public/images/`: imagens WebP demonstrativas.
+Configuração comercial em `src/config.js`: principal provisório `5587988619978`, alternativo `5587981810168`, Instagram `@tapiocaestacaobr`. Confirmar o destino principal antes da operação.
 
-## Próximos passos para produção
+Persistência em `estacao-da-tapioca.cart.v2`: somente itens, quantidades e personalizações. Preços são recalculados pelo catálogo; dados inválidos, produtos removidos e cardápio fictício anterior são descartados. Nome e endereço ficam somente na memória e são descartados ao fechar o carrinho/recarregar.
 
-Confirmar identidade e dados da empresa, substituir o cardápio e as fotografias, configurar o número real e validar uma conversa com autorização da equipe. Definir condições de retirada/entrega, publicar em domínio próprio com HTTPS e revisar privacidade e operação comercial. Pedidos persistidos em servidor, sincronização, disponibilidade e pagamentos exigem uma etapa própria de backend; não estão incluídos neste protótipo.
+## Portal e limites
 
-Fontes distribuídas pelos pacotes Fontsource, com licenças incluídas nesses pacotes. Ícones Lucide, licença ISC. Imagens geradas para esta demonstração, sem atribuição à produção real da empresa.
+Credenciais, gate e rota existentes foram preservados. O portal tem tela de login, sem catálogo de miniaturas; depois do acesso, o protótipo apresenta o nome oficial e a marca original. Nenhum novo caminho público de publicação foi criado. O gate do GitHub Pages continua sendo uma barreira visual, com arquivos públicos, conforme o escopo anterior.
 
-## Acesso pelo portal privado WebForge
+Não há backend ou painel administrativo de pedidos neste aplicativo. A mensagem agrupada organiza o atendimento/cozinha. Não há recebimento automático, pagamento online, estoque em tempo real ou confirmação de disponibilidade.
 
-A hospedagem pública em GitHub Pages foi substituída por um servidor Node.js com autenticação e autorização. O projeto permanece disponível para desenvolvimento local, mas a apresentação a clientes deve ser acessada somente pela rota protegida `/projetos/tapioca-estacao-br/` no domínio da VPS.
+Pendências operacionais: endereço comercial, horários, área e taxa de entrega, pagamento, retirada e confirmação do contato principal. Esses dados, avaliações e depoimentos não foram inventados. A flag `available` é cadastral, sem consulta de estoque.
 
-O build do portal define `WEBFORGE_BASE` e copia os arquivos para `webforge/private/prototypes`. Não publique o `dist` deste projeto nem cópias dos assets em hospedagem pública. O workflow agora valida o WebForge sem publicar no Pages; a publicação antiga precisa ser desativada nas configurações do GitHub.
+## Navegador
 
-Veja [as instruções do portal](../webforge/README.md) para execução, administração de acessos e Docker/HTTPS. Não existem senhas padrão.
+O teste Python anterior, com seletores do cardápio fictício e Chromium Linux fixo, foi substituído por Playwright em `tests/browser-smoke.mjs`. Com o servidor ativo:
+
+```sh
+npx playwright install chromium
+npm run test:browser
+```
+
+Outra URL: variável `TAPIOCA_TEST_URL`. Pode-se usar Chromium compatível instalado por `CHROMIUM_PATH`. Nesta máquina Windows:
+
+```powershell
+$env:CHROMIUM_PATH='C:/Users/Win/AppData/Local/Programs/Opera GX/opera.exe'
+npm run test:browser
+```
+
+Cobertura: catálogo, busca, pedido R$ 63,00, quantidades, personalizações distintas, remoção, endereço, retirada, mensagem/URL, cópia, persistência, foco/Escape, limpeza, imagens e larguras 320, 360, 390, 768, 1024 e 1440 px. O teste não abre links de WhatsApp. Capturas e exemplo de mensagem ficam em `tests/artifacts/`, ignorados pelo Git. Os resultados efetivos estão em `VALIDACAO.md`.
+
+## Arquivos e ferramentas
+
+Marca/metadados: `public/brand/`, `index.html`, `src/config.js`. Catálogo/fotos: `src/data/products.js`, `public/images/menu/`. Interface: `src/components/`, `src/App.jsx`, `src/styles.css`. Pedido/persistência: `src/utils/order.js`, `src/hooks/useCart.js`. Verificações: `tests/`, `tsconfig.json`, scripts npm.
+
+Skills utilizadas: Sites (implementação no repositório existente), imagegen (fotografias ilustrativas), React best practices e Verification. Dois subagentes auxiliaram nos dados e motor do pedido. O navegador integrado apresentou timeout e erro de sessão; a validação de ponta a ponta utiliza Playwright e o navegador local instalado. Nenhuma publicação foi feita nesta atualização.

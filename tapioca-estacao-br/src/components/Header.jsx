@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { Menu, X, ShoppingBag, ArrowUpRight } from "lucide-react";
-export function Brand() {
+import { business } from "../config";
+export function Brand({ footer = false }) {
   return (
-    <a className="brand" href="#inicio" aria-label="Tapioca Estação BR, início">
-      <span className="brand-symbol">
-        <span />
-      </span>
-      <span>
-        <b>
-          estação<span className="brand-br">BR</span>
-        </b>
-        <small>T A P I O C A</small>
-      </span>
+    <a className="brand" href="#inicio" aria-label={business.name + ", início"}>
+      <img
+        src={footer ? business.logoFooter : business.logo}
+        width="160"
+        height="160"
+        alt="Estação da Tapioca"
+      />
     </a>
   );
 }
@@ -19,34 +17,40 @@ export default function Header({ count, openCart }) {
   const [menu, setMenu] = useState(false);
   return (
     <header className="site-header">
-      <div className="header-inner">
+      <div className="header-inner section-shell">
         <Brand />
         <nav
-          id="main-navigation" aria-label="Navegação principal"
+          id="main-navigation"
+          aria-label="Navegação principal"
           className={menu ? "navigation is-open" : "navigation"}
         >
-          <a href="#cardapio" onClick={() => setMenu(false)}>
-            Cardápio
-          </a>
-          <a href="#sobre" onClick={() => setMenu(false)}>
-            Nossa proposta
-          </a>
-          <a href="#contato" onClick={() => setMenu(false)}>
-            Contato <ArrowUpRight size={14} />
-          </a>
+          {[
+            ["cardapio", "Cardápio"],
+            ["sobre", "Sabor e tradição"],
+            ["contato", "Delivery"],
+          ].map(([id, label]) => (
+            <a key={id} href={"#" + id} onClick={() => setMenu(false)}>
+              {label}
+              {id === "contato" && <ArrowUpRight size={15} />}
+            </a>
+          ))}
         </nav>
         <div className="header-actions">
-          <button className="cart-toggle" onClick={openCart}>
-            <ShoppingBag size={18} />
+          <button
+            className="cart-toggle"
+            onClick={openCart}
+            aria-label={"Abrir meu pedido, " + count + " itens"}
+          >
+            <ShoppingBag size={21} />
             <span>Meu pedido</span>
-            <b aria-label={`${count} itens`}>{count}</b>
+            <b>{count}</b>
           </button>
           <button
             className="menu-toggle icon-button"
-            onClick={() => setMenu(!menu)}
             aria-expanded={menu}
             aria-controls="main-navigation"
             aria-label={menu ? "Fechar menu" : "Abrir menu"}
+            onClick={() => setMenu((m) => !m)}
           >
             {menu ? <X /> : <Menu />}
           </button>

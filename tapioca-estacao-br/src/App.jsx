@@ -9,27 +9,39 @@ import {
   Footer,
 } from "./components/Sections";
 import Cart from "./components/Cart";
+import ProductDetails from "./components/ProductDetails";
 import { useCart } from "./hooks/useCart";
 import { products } from "./data/products";
 import { orderLines, subtotal, currency } from "./utils/order";
 export default function App() {
-  const [open, setOpen] = useState(false);
-  const { cart, change, remove, storageUnavailable } = useCart();
-  const lines = orderLines(cart, products);
-  const count = lines.reduce((s, p) => s + p.quantity, 0);
+  const [open, setOpen] = useState(false),
+    [selected, setSelected] = useState(null),
+    [notice, setNotice] = useState("");
+  const { cart, add, change, remove, clear, storageUnavailable } = useCart();
+  const lines = orderLines(cart, products),
+    count = lines.reduce((s, p) => s + p.quantity, 0);
+  const incluir = (id, options) => {
+    add(id, options);
+    setNotice("Produto adicionado ao pedido.");
+  };
   return (
     <>
       <a className="skip-link" href="#cardapio">
         Pular para o cardápio
       </a>
       <div className="demo-bar">
-        UMA PROPOSTA DIGITAL PARA A TAPIOCA ESTAÇÃO BR <span>·</span> PROTÓTIPO
-        DEMONSTRATIVO
+        ESTAÇÃO DA TAPIOCA <span>·</span> Apresentação digital do cardápio
       </div>
-      <Header count={count} openCart={() => setOpen(true)} />
+      <Header
+        count={count}
+        openCart={() => {
+          setNotice("");
+          setOpen(true);
+        }}
+      />
       <main>
         <Hero onOrder={() => setOpen(true)} />
-        <MenuSection cart={cart} change={change} />
+        <MenuSection onSelect={setSelected} />
         <About />
         <Contact />
       </main>
@@ -38,22 +50,40 @@ export default function App() {
         <button className="mobile-cart" onClick={() => setOpen(true)}>
           <ShoppingBag size={19} />
           <span>
-            Ver meu pedido · {count} {count === 1 ? "item" : "itens"}
+            Meu pedido · {count} {count === 1 ? "item" : "itens"}
           </span>
           <strong>{currency(subtotal(lines))}</strong>
         </button>
       )}
       <span className="sr-only" aria-live="polite">
-        {count} itens no pedido. Subtotal {currency(subtotal(lines))}.
+        {count} itens no pedido. Total {currency(subtotal(lines))}.
       </span>
-      <Cart
-        open={open}
-        onClose={() => setOpen(false)}
-        lines={lines}
-        change={change}
-        remove={remove}
-        storageUnavailable={storageUnavailable}
-      />
+      {notice && (
+        <div className="notice" role="status">
+          {notice}
+          <button aria-label="Fechar aviso" onClick={() => setNotice("")}>
+            ×
+          </button>
+        </div>
+      )}
+      {open && (
+        <Cart
+          onClose={() => setOpen(false)}
+          lines={lines}
+          change={change}
+          remove={remove}
+          clear={clear}
+          storageUnavailable={storageUnavailable}
+        />
+      )}{" "}
+      {selected && (
+        <ProductDetails
+          key={selected.id}
+          product={selected}
+          onClose={() => setSelected(null)}
+          onAdd={incluir}
+        />
+      )}
     </>
   );
 }

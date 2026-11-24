@@ -1,35 +1,78 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { products } from "../data/products";
-import { normalizeCart } from "../utils/order";
-const KEY = "tapioca-estacao-br.cart.v1";
+import {
+  CART_KEY,
+  CART_VERSION,
+  LEGACY_CART_KEY,
+  normalizeCart,
+} from "../utils/order";
 export function useCart() {
   const [cart, setCart] = useState(() => {
     try {
-      return normalizeCart(JSON.parse(localStorage.getItem(KEY)), products);
+      const raw = localStorage.getItem(CART_KEY);
+      const data = raw ? JSON.parse(raw) : null;
+      return data?.version === CART_VERSION
+        ? normalizeCart(data, products)
+        : [];
     } catch {
-      return {};
+      return [];
     }
   });
   const [storageUnavailable, setStorageUnavailable] = useState(false);
-  const save = (next) => {
+  useEffect(() => {
+    let active = true;
     try {
-      localStorage.setItem(KEY, JSON.stringify(next));
+      localStorage.setItem(
+        CART_KEY,
+        JSON.stringify({ version: CART_VERSION, items: cart }),
+      );
+      localStorage.removeItem(LEGACY_CART_KEY);
     } catch {
-      setStorageUnavailable(true);
+      queueMicrotask(() => {
+        if (active) setStorageUnavailable(true);
+      });
     }
-    setCart(next);
+    return () => {
+      active = false;
+    };
+  }, [cart]);
+  const add = (
+    productId,
+    { quantity = 1, semTempero = false, notes = "" } = {},
+  ) => {
+    if (
+      !products.some((p) => p.id === productId && p.available !== false) ||
+      !Number.isInteger(quantity) ||
+      quantity < 1
+    )
+      return;
+    const item = {
+      id: crypto.randomUUID(),
+      productId,
+      quantity,
+      semTempero,
+      notes,
+    };
+    setCart((current) => normalizeCart([...current, item], products));
   };
-  const change = (id, delta) => {
-    if (!products.some((p) => p.id === id) || !Number.isInteger(delta)) return;
-    const next = { ...cart };
-    const quantity = Math.max(0, Math.min(99, (next[id] || 0) + delta));
-    if (quantity) next[id] = quantity;
-    else delete next[id];
-    save(next);
-  };
-  const remove = (id) =>
-    save(
-      Object.fromEntries(Object.entries(cart).filter(([key]) => key !== id)),
+  const change = (lineId, delta) => {
+    if (!Number.isInteger(delta)) return;
+    setCart((current) =>
+      normalizeCart(
+        current.map((line) =>
+          line.id === lineId
+            ? {
+                ...line,
+                quantity: Math.max(0, Math.min(99, line.quantity + delta)),
+              }
+            : line,
+        ),
+        products,
+      ),
     );
-  return { cart, change, remove, storageUnavailable };
+  };
+  const remove = (lineId) =>
+    setCart((current) => current.filter((line) => line.id !== lineId));
+  const clear = () => setCart([]);
+  return { cart, add, change, remove, clear, storageUnavailable };
 }

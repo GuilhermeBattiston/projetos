@@ -1,0 +1,47 @@
+Olá! Gostaria de fazer um pedido na Estação da Tapioca.
+
+*CLIENTE*
+Nome: Maria Teste
+Modalidade: Delivery
+
+*TAPIOCAS TRADICIONAIS*
+2x Tapioca na manteiga — R$ 5,00 cada — R$ 10,00
+Quantidade de unidades: 2
+Subtotal: R$ 10,00
+
+*TAPIOCAS ESPECIAIS*
+1x Charque com mussarela — R$ 15,00 cada — R$ 15,00
+Personalização: Sem tempero.
+Observação: Bem quente
+1x Frango com catupiry — R$ 10,00 cada — R$ 10,00
+Quantidade de unidades: 2
+Subtotal: R$ 25,00
+
+*TAPIOCAS DOCES*
+1x Perfeitinha — R$ 9,00 cada — R$ 9,00
+Quantidade de unidades: 1
+Subtotal: R$ 9,00
+
+*SANDUÍCHES*
+1x Misto quente — R$ 7,00 cada — R$ 7,00
+Quantidade de unidades: 1
+Subtotal: R$ 7,00
+
+*BEBIDAS*
+2x Coca-Cola lata — 350 ml — R$ 6,00 cada — R$ 12,00
+Quantidade de unidades: 2
+Subtotal: R$ 12,00
+
+*TOTAL DOS PRODUTOS: R$ 63,00*
+
+Taxa de entrega a confirmar pelo atendimento.
+
+*ENDEREÇO*
+Rua: Rua de Teste
+Número: 10
+Bairro: Centro
+
+*OBSERVAÇÕES GERAIS*
+Teste de revisão & acentuação
+
+Aguardo a confirmação do pedido e do valor final.

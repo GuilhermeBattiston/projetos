@@ -1,0 +1,14 @@
+[
+  {
+    "slug": "coca-cola-350ml",
+    "prompt": "Photorealistic beverage catalog illustration. One plain red 350 ml aluminum cola soda can with silver top, unbranded, no text or logo or lettering, condensation. Packaging is a generic illustrative container, not a reproduced commercial package. Single centered product, square 1024x1024, dark charcoal neutral background and matte black tabletop, warm soft studio lighting, no watermark, no people, no extra objects. This is explicitly an illustrative menu photograph, not official brand photography. Do not invent any brand label.",
+    "hint": "Generated images are saved to C:\\Users\\Win\\.codex\\generated_images\\01a15f39-97a0-7412-86f8-5aba254249cd as C:\\Users\\Win\\.codex\\generated_images\\01a15f39-97a0-7412-86f8-5aba254249cd\\exec-d59bb361-fd6d-4017-8b82-64bdf596b012.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "original": "C:\\Users\\Win\\.codex\\generated_images\\01a15f39-97a0-7412-86f8-5aba254249cd\\exec-d59bb361-fd6d-4017-8b82-64bdf596b012.png"
+  },
+  {
+    "slug": "refrigerante-jatoba-250ml",
+    "prompt": "Photorealistic beverage catalog illustration. One small plain unbranded 250 ml dark amber glass soda bottle with plain metal cap, no label, no text, contents not visible and no fruit or flavor indication. Packaging is a generic illustrative container, not a reproduced commercial package. Single centered product, square 1024x1024, dark charcoal neutral background and matte black tabletop, warm soft studio lighting, no watermark, no people, no extra objects. This is explicitly an illustrative menu photograph, not official brand photography. Do not invent any brand label.",
+    "hint": "Generated images are saved to C:\\Users\\Win\\.codex\\generated_images\\01a15f39-97a0-7412-86f8-5aba254249cd as C:\\Users\\Win\\.codex\\generated_images\\01a15f39-97a0-7412-86f8-5aba254249cd\\exec-071308cc-0ee9-451c-83ca-4e39fc8e7e89.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "original": "C:\\Users\\Win\\.codex\\generated_images\\01a15f39-97a0-7412-86f8-5aba254249cd\\exec-071308cc-0ee9-451c-83ca-4e39fc8e7e89.png"
+  }
+]

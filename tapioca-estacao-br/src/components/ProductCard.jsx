@@ -1,55 +1,71 @@
 import { useState } from "react";
-import { Plus, Check, Coffee, Citrus, Wheat } from "lucide-react";
+import { Coffee, Plus } from "lucide-react";
 import { currency } from "../utils/order";
-export function ProductImage({ product }) {
+export function ProductImage({ product, eager = false }) {
   const [failed, setFailed] = useState(false);
-  const Icon =
-    product.id === "cafe" ? Coffee : product.id === "suco" ? Citrus : Wheat;
   return product.image && !failed ? (
     <img
       src={product.image}
-      alt={`Imagem ilustrativa de ${product.name.toLowerCase()}`}
-      loading="lazy"
+      srcSet={
+        product.image.replace(".webp", "-360.webp") +
+        " 360w, " +
+        product.image +
+        " 640w"
+      }
+      sizes={
+        eager
+          ? "(max-width: 760px) calc(100vw - 32px), 45vw"
+          : "(max-width: 374px) calc(100vw - 40px), (max-width: 700px) calc((100vw - 52px)/2), (max-width: 1000px) 45vw, 360px"
+      }
+      alt={product.alt}
+      width="640"
+      height="640"
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
       onError={() => setFailed(true)}
     />
   ) : (
     <div
-      className={`image-placeholder ${product.category === "Doces" ? "sweet" : ""}`}
+      className="image-placeholder"
+      role="img"
+      aria-label={"Foto de " + product.name + " a confirmar"}
     >
-      <Icon size={46} strokeWidth={1} />
-      <span>Imagem em breve</span>
+      <Coffee size={36} />
+      <span>Foto a confirmar</span>
     </div>
   );
 }
-export default function ProductCard({ product, onAdd, quantity }) {
-  const [added, setAdded] = useState(false);
-  const add = () => {
-    onAdd(product.id, 1);
-    setAdded(true);
-    window.setTimeout(() => setAdded(false), 1500);
-  };
+export default function ProductCard({ product, onSelect }) {
   return (
     <article className="product-card">
-      <div className="product-photo">
+      <button
+        className="product-photo"
+        onClick={onSelect}
+        aria-label={"Ver " + product.name}
+      >
         <ProductImage product={product} />
-        {product.tag && <span className="product-tag">{product.tag}</span>}
-      </div>
+        {product.number && (
+          <span className="product-number">{product.number}</span>
+        )}
+      </button>
       <div className="product-info">
-        <span className="eyebrow">{product.category}</span>
         <h3>{product.name}</h3>
         <p>{product.description}</p>
+        {product.packagingPending && (
+          <small className="packaging-note">
+            Embalagem ilustrativa, sem rótulo. Foto oficial a confirmar.
+          </small>
+        )}
         <div className="product-bottom">
           <strong>{currency(product.price)}</strong>
           <button
-            className={`add-button ${added ? "added" : ""}`}
-            onClick={add}
-            disabled={quantity >= 99}
-            aria-label={`Adicionar ${product.name}`}
+            className="add-button"
+            onClick={onSelect}
+            disabled={!product.available}
+            aria-label={"Escolher " + product.name}
           >
-            {added ? <Check size={19} /> : <Plus size={19} />}
-            <span>
-              {quantity >= 99 ? "Limite" : added ? "Adicionado" : "Adicionar"}
-            </span>
+            <Plus size={18} />
+            {product.available ? "Escolher" : "Indisponível"}
           </button>
         </div>
       </div>
