@@ -1,4 +1,15 @@
-# Validação — 24/11/2026
+# Validação — Estação da Tapioca
+
+## Atualização de apresentação — 25/11/2026
+
+- Endereço adicionado à seção de contato e ao rodapé: Travessa Maria Ramos, Garanhuns, Brasil — CEP 55292-700. Link de busca no Google Maps.
+- Informação de entregas pelo iFood e pela 99, sem links para essas plataformas, conforme pedido do usuário.
+- Interface revisada para apresentação final: sem faixa de demonstração, sem opção de retirada não confirmada e sem textos de pendência técnica nos cartões de produtos. Os avisos de imagem ilustrativa e confirmação de frete foram mantidos.
+- Lint, typecheck, build e os 19 testes unitários aprovados.
+- Bloco de contato inspecionado visualmente em desktop e celular.
+- Playwright aprovado no build: endereço e canais corretos, pedido de R$ 63,00, persistência e larguras 320, 360, 390, 768, 1024 e 1440 px, sem erros de console nem envio real de mensagem.
+
+## Registro anterior — 24/11/2026
 
 Atualização local da **Estação da Tapioca** no repositório `projetos`, pasta `tapioca-estacao-br`. Sem publicação nesta etapa. Nenhum arquivo dos demais protótipos, credencial ou gate do portal foi alterado.
 

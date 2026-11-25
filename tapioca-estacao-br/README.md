@@ -2,6 +2,10 @@
 
 Atualização do aplicativo existente em React 19 + Vite. Nome oficial, logotipo original e cardápio fornecido foram integrados; o slug técnico `tapioca-estacao-br` foi preservado.
 
+## Versão para apresentação — 25/11/2026
+
+Endereço informado pelo responsável: **Travessa Maria Ramos, Garanhuns, Brasil — CEP 55292-700**, com acesso à busca no mapa. Entregas também pelo **iFood e pela 99**, exibidas como informação sem links, conforme solicitado. Textos de apresentação/demonstração foram removidos da interface; a opção demonstrativa de retirada não é exibida. O catálogo mantém os 27 itens, preços oficiais, identidade original e pedidos pelo WhatsApp.
+
 ## Executar e conferir
 
 Requer Node 22.12 ou superior. Dentro desta pasta:
@@ -53,7 +57,7 @@ Quantidade, ingredientes, observações individuais e opção sem tempero para a
 
 Carrinho, checkout, revisão e mensagem seguem a ordem das cinco categorias. Cada grupo mostra quantidade de unidades e subtotal; linhas mostram preço unitário, quantidade, subtotal e personalizações. Personalizações diferentes permanecem em linhas separadas. Grupos vazios são omitidos. Há alteração de quantidade, remoção e limpeza com confirmação.
 
-Delivery exige nome, rua, número e bairro. Complemento/referência são opcionais; retirada é demonstrativa. Total somente dos produtos, com aviso: **Taxa de entrega a confirmar pelo atendimento.**
+Delivery exige nome, rua, número e bairro. Complemento/referência são opcionais; retirada só aparece se confirmada na configuração. Total somente dos produtos, com aviso: **Taxa de entrega a confirmar pelo atendimento.**
 
 O cliente revisa, copia a mensagem e decide abrir o WhatsApp. A URL usa `encodeURIComponent`, preserva acentos e quebras de linha. Abrir o link não confirma recebimento nem apaga o carrinho. Nenhuma mensagem é enviada automaticamente.
 
@@ -67,7 +71,7 @@ Credenciais, gate e rota existentes foram preservados. O portal tem tela de logi
 
 Não há backend ou painel administrativo de pedidos neste aplicativo. A mensagem agrupada organiza o atendimento/cozinha. Não há recebimento automático, pagamento online, estoque em tempo real ou confirmação de disponibilidade.
 
-Pendências operacionais: endereço comercial, horários, área e taxa de entrega, pagamento, retirada e confirmação do contato principal. Esses dados, avaliações e depoimentos não foram inventados. A flag `available` é cadastral, sem consulta de estoque.
+Pendências operacionais: horários, área e taxa de entrega, pagamento, retirada e confirmação do contato principal. Esses dados, avaliações e depoimentos não foram inventados. A flag `available` é cadastral, sem consulta de estoque.
 
 ## Navegador
 
@@ -91,4 +95,4 @@ Cobertura: catálogo, busca, pedido R$ 63,00, quantidades, personalizações dis
 
 Marca/metadados: `public/brand/`, `index.html`, `src/config.js`. Catálogo/fotos: `src/data/products.js`, `public/images/menu/`. Interface: `src/components/`, `src/App.jsx`, `src/styles.css`. Pedido/persistência: `src/utils/order.js`, `src/hooks/useCart.js`. Verificações: `tests/`, `tsconfig.json`, scripts npm.
 
-Skills utilizadas: Sites (implementação no repositório existente), imagegen (fotografias ilustrativas), React best practices e Verification. Dois subagentes auxiliaram nos dados e motor do pedido. O navegador integrado apresentou timeout e erro de sessão; a validação de ponta a ponta utiliza Playwright e o navegador local instalado. Nenhuma publicação foi feita nesta atualização.
+Skills utilizadas: Sites (implementação no repositório existente), imagegen (fotografias ilustrativas), React best practices e Verification. Dois subagentes auxiliaram nos dados e motor do pedido. O navegador integrado apresentou timeout e erro de sessão; a validação de ponta a ponta utiliza Playwright e o navegador local instalado. Publicação no GitHub Pages autorizada pelo usuário; rota e credenciais preservadas.

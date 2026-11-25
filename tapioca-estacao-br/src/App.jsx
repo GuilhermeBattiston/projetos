@@ -29,8 +29,8 @@ export default function App() {
       <a className="skip-link" href="#cardapio">
         Pular para o cardápio
       </a>
-      <div className="demo-bar">
-        ESTAÇÃO DA TAPIOCA <span>·</span> Apresentação digital do cardápio
+      <div className="announcement-bar">
+        Feita na hora <span>·</span> Delivery em Garanhuns
       </div>
       <Header
         count={count}

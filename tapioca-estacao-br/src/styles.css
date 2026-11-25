@@ -99,7 +99,7 @@ svg {
 .skip-link:focus {
   transform: none;
 }
-.demo-bar {
+.announcement-bar {
   background: var(--gold);
   color: #191919;
   display: flex;
@@ -1084,7 +1084,7 @@ dialog::backdrop {
   .section-shell {
     width: calc(100% - 32px);
   }
-  .demo-bar {
+  .announcement-bar {
     font-size: 10px;
     gap: 7px;
     letter-spacing: 0;
@@ -1514,4 +1514,68 @@ dialog::backdrop {
   font-size: 11px;
   line-height: 1.5;
   margin-bottom: 14px;
+}
+
+.delivery-platforms {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 22px 0;
+}
+.delivery-platforms span {
+  border: 1px solid #685321;
+  background: #201a0e;
+  color: var(--gold);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.location-card {
+  display: flex;
+  gap: 14px;
+  border-top: 1px solid var(--line);
+  padding: 24px 0;
+  margin-top: 25px;
+}
+.location-card > svg {
+  color: var(--gold);
+  margin-top: 4px;
+}
+.location-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.location-card address,
+.footer-location address {
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.location-card .inline-link {
+  margin-top: 14px;
+  min-height: 44px;
+}
+.footer-location {
+  max-width: 330px;
+}
+.footer-location > span {
+  display: block;
+  margin-bottom: 9px;
+}
+.footer-location p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 8px 0 0;
+}
+@media (max-width: 760px) {
+  .footer-location {
+    width: 100%;
+    max-width: none;
+  }
+  .location-card address {
+    font-size: 15px;
+  }
 }

@@ -7,6 +7,7 @@ import {
   Clock,
   Heart,
   Search,
+  MapPin,
 } from "lucide-react";
 import { Brand } from "./Header";
 import ProductCard, { ProductImage } from "./ProductCard";
@@ -184,8 +185,8 @@ export function MenuSection({ onSelect }) {
         </div>
       )}
       <p className="menu-footnote">
-        Produtos e preços transcritos do cardápio fornecido. Fotos ilustrativas;
-        confirme disponibilidade e condições com o atendimento.
+        Fotos ilustrativas. Consulte a disponibilidade e as condições de entrega
+        com o atendimento.
       </p>
     </section>
   );
@@ -236,9 +237,35 @@ export function Contact() {
           <br />
           <em>Muito sabor.</em>
         </h2>
-        <p>Contatos de delivery divulgados no cardápio.</p>
+        <p>
+          Peça pelo WhatsApp. Também entregamos pelo{" "}
+          {business.deliveryPlatforms.join(" e pela ")}.
+        </p>
+        <div
+          className="delivery-platforms"
+          aria-label="Outros canais de delivery"
+        >
+          {business.deliveryPlatforms.map((platform) => (
+            <span key={platform}>{platform}</span>
+          ))}
+        </div>
+        <div className="location-card">
+          <MapPin size={23} />
+          <div>
+            <h3>Onde estamos</h3>
+            <address>{business.address}</address>
+            <a
+              className="inline-link"
+              href={business.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver no mapa
+            </a>
+          </div>
+        </div>
         <p className="fine">
-          Número principal provisório. Área e taxa de entrega a confirmar.
+          Consulte a área atendida e a taxa de entrega com o atendimento.
         </p>
       </div>
       <div className="contact-links">
@@ -282,7 +309,11 @@ export function Footer() {
           <a href="#sobre">Sabor e tradição</a>
           <a href="#contato">Delivery</a>
         </nav>
-        <span>A verdadeira tapioca feita na hora!</span>
+        <div className="footer-location">
+          <span>A verdadeira tapioca feita na hora!</span>
+          <address>{business.address}</address>
+          <p>Também entregamos pelo iFood e pela 99.</p>
+        </div>
       </div>
       <div className="footer-bottom section-shell">
         <span>© {new Date().getFullYear()} · Estação da Tapioca</span>

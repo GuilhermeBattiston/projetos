@@ -51,16 +51,15 @@ export default function ProductDetails({ product: p, onClose, onAdd }) {
               value={notes}
               maxLength={300}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="Informe sua preferência, sem dados pessoais"
+              placeholder="Como você prefere seu pedido?"
             />
           </label>
           <p className="fine">
-            Sem adicionais pagos ou substituições automáticas. Confirme
-            restrições alimentares com o atendimento.
+            Informe suas preferências nas observações e confirme restrições
+            alimentares com o atendimento.
           </p>
           <p className="fine">
-            {p.packagingPending &&
-              "Embalagem ilustrativa sem rótulo. Foto oficial a confirmar. "}
+            {p.packagingPending && "Embalagem ilustrativa. "}
             Imagem ilustrativa. {business.name}.
           </p>
         </div>

@@ -57,6 +57,17 @@ try {
   );
   await expect(page).toHaveTitle("Estação da Tapioca | Cardápio e Delivery");
   assert.equal(await page.locator(".product-card").count(), 27);
+  await expect(page.locator(".location-card address")).toHaveText(
+    "Travessa Maria Ramos, Garanhuns, Brasil — CEP 55292-700",
+  );
+  await expect(page.locator(".delivery-platforms")).toContainText("iFood");
+  await expect(page.locator(".delivery-platforms")).toContainText("99");
+  assert.equal(
+    await page
+      .getByText("Apresentação digital do cardápio", { exact: true })
+      .count(),
+    0,
+  );
   assert.equal(await page.locator(".menu-category").count(), 5);
   for (const [name, count] of [
     ["Tapiocas tradicionais", 4],
@@ -173,20 +184,7 @@ try {
   await page.screenshot({
     path: fileURLToPath(new URL("revisao.png", artifacts)),
   });
-  await page.getByRole("button", { name: "Voltar", exact: true }).click();
-  await page
-    .getByRole("radio", { name: "Retirada (demonstrativa)", exact: true })
-    .check();
-  await page
-    .getByRole("button", { name: "Revisar pedido", exact: true })
-    .click();
-  assert.ok(
-    !(
-      await page
-        .getByRole("textbox", { name: "Mensagem para WhatsApp" })
-        .inputValue()
-    ).includes("Rua de Teste"),
-  );
+  assert.equal(await page.getByRole("radio", { name: /Retirada/ }).count(), 0);
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(page.locator(".cart-toggle")).toBeFocused();

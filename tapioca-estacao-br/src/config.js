@@ -15,7 +15,13 @@ export const business = {
     },
   ],
   whatsappConfirmed: false,
-  demo: true,
+  demo: false,
+  address: "Travessa Maria Ramos, Garanhuns, Brasil — CEP 55292-700",
+  addressShort: "Travessa Maria Ramos · Garanhuns",
+  deliveryPlatforms: ["iFood", "99"],
+  mapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent("Travessa Maria Ramos, Garanhuns, Brasil 55292-700"),
   pickupConfirmed: false,
   deliveryFee: null,
   logo: `${baseUrl}brand/logo-header.webp`,

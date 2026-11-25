@@ -231,15 +231,17 @@ export default function Cart({
                       />
                       Delivery
                     </label>
-                    <label>
-                      <input
-                        type="radio"
-                        name="method"
-                        checked={details.method === "pickup"}
-                        onChange={() => personal("method", "pickup")}
-                      />
-                      Retirada (demonstrativa)
-                    </label>
+                    {business.pickupConfirmed && (
+                      <label>
+                        <input
+                          type="radio"
+                          name="method"
+                          checked={details.method === "pickup"}
+                          onChange={() => personal("method", "pickup")}
+                        />
+                        Retirada
+                      </label>
+                    )}
                   </fieldset>
                   {details.method === "delivery" && (
                     <>
@@ -336,7 +338,7 @@ export default function Cart({
               <p className="fine">
                 {details.method === "delivery"
                   ? "Taxa de entrega a confirmar pelo atendimento."
-                  : "Retirada demonstrativa, a confirmar com o atendimento."}
+                  : "Retirada a combinar com o atendimento."}
               </p>
               <div className="cart-footer-actions">
                 {step !== "cart" && (

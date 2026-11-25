@@ -52,9 +52,7 @@ export default function ProductCard({ product, onSelect }) {
         <h3>{product.name}</h3>
         <p>{product.description}</p>
         {product.packagingPending && (
-          <small className="packaging-note">
-            Embalagem ilustrativa, sem rótulo. Foto oficial a confirmar.
-          </small>
+          <small className="packaging-note">Embalagem ilustrativa.</small>
         )}
         <div className="product-bottom">
           <strong>{currency(product.price)}</strong>
